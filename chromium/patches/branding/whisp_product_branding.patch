@@ -1,0 +1,63 @@
+diff --git a/chrome/BUILD.gn b/chrome/BUILD.gn
+index f8d29b704ab49..a7521f4fce215 100644
+--- a/chrome/BUILD.gn
++++ b/chrome/BUILD.gn
+@@ -149,9 +149,9 @@ if (!is_android && !is_mac) {
+   }
+ 
+   if (is_win) {
+-    _chrome_output_name = "initialexe/chrome"
++    _chrome_output_name = "initialexe/whisp"
+   } else {
+-    _chrome_output_name = "chrome"
++    _chrome_output_name = "whisp"
+   }
+ 
+   executable("chrome_initial") {
+@@ -409,7 +409,7 @@ if (is_win) {
+       "app/startup_timestamps.h",
+     ]
+ 
+-    output_name = "chrome"
++    output_name = "whisp"
+ 
+     deps = [
+       ":chrome_dll_manifest",
+diff --git a/chrome/app/theme/chromium/BRANDING b/chrome/app/theme/chromium/BRANDING
+index f8363d5b294fe..3e6f4ac032685 100644
+--- a/chrome/app/theme/chromium/BRANDING
++++ b/chrome/app/theme/chromium/BRANDING
+@@ -1,10 +1,10 @@
+-COMPANY_FULLNAME=The Chromium Authors
+-COMPANY_SHORTNAME=The Chromium Authors
+-PRODUCT_FULLNAME=Chromium
+-PRODUCT_SHORTNAME=Chromium
+-PRODUCT_INSTALLER_FULLNAME=Chromium Installer
+-PRODUCT_INSTALLER_SHORTNAME=Chromium Installer
+-COPYRIGHT=Copyright @LASTCHANGE_YEAR@ The Chromium Authors. All rights reserved.
+-MAC_BUNDLE_ID=org.chromium.Chromium
++COMPANY_FULLNAME=Whisp Authors
++COMPANY_SHORTNAME=Whisp Authors
++PRODUCT_FULLNAME=Whisp
++PRODUCT_SHORTNAME=Whisp
++PRODUCT_INSTALLER_FULLNAME=Whisp Installer
++PRODUCT_INSTALLER_SHORTNAME=Whisp Installer
++COPYRIGHT=Copyright @LASTCHANGE_YEAR@ Whisp Authors. All rights reserved.
++MAC_BUNDLE_ID=com.whisp.Whisp
+ MAC_CREATOR_CODE=Cr24
+ MAC_TEAM_ID=
+diff --git a/components/os_crypt/common/keychain_password_mac.mm b/components/os_crypt/common/keychain_password_mac.mm
+index caa0e420956a3..63e58b7bf1a7d 100644
+--- a/components/os_crypt/common/keychain_password_mac.mm
++++ b/components/os_crypt/common/keychain_password_mac.mm
+@@ -35,8 +35,8 @@
+ const char kDefaultServiceName[] = "Chrome Safe Storage";
+ const char kDefaultAccountName[] = "Chrome";
+ #else
+-const char kDefaultServiceName[] = "Chromium Safe Storage";
+-const char kDefaultAccountName[] = "Chromium";
++const char kDefaultServiceName[] = "Whisp Safe Storage";
++const char kDefaultAccountName[] = "Whisp";
+ #endif
+
+ // These values are persisted to logs. Entries should not be renumbered and

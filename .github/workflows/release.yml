@@ -1,0 +1,98 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [20]
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build all packages
+        run: pnpm build
+
+      - name: Package artifacts
+        run: node scripts/package.js
+
+      - name: Upload release artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: whisp-release-${{ matrix.os }}
+          path: dist/
+          retention-days: 7
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: artifacts
+
+      - name: Display structure
+        run: ls -la artifacts/ && find artifacts -type f
+
+      - name: Compute version
+        id: vars
+        run: echo "VERSION=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "Whisp v${{ steps.vars.outputs.VERSION }}"
+          tag_name: ${{ github.ref_name }}
+          body: |
+            ## Whisp v${{ steps.vars.outputs.VERSION }}
+
+            ### Downloads
+
+            **Chrome Extension (.zip)**
+            - [whisp-extension-linux-x64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/whisp-extension-linux-x64.zip)
+            - [whisp-extension-macos-x64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/whisp-extension-macos-x64.zip)
+            - [whisp-extension-windows-x64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/whisp-extension-windows-x64.zip)
+
+            **Branding Assets**
+            - [whisp-branding-linux-x64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/whisp-branding-linux-x64.zip)
+            - [whisp-branding-macos-x64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/whisp-branding-macos-x64.zip)
+            - [whisp-branding-windows-x64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/whisp-branding-windows-x64.zip)
+
+            **Chromium Patches**
+            - [whisp-chromium-patches-linux-x64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/whisp-chromium-patches-linux-x64.zip)
+            - [whisp-chromium-patches-macos-x64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/whisp-chromium-patches-macos-x64.zip)
+            - [whisp-chromium-patches-windows-x64.zip](https://github.com/${{ github.repository }}/releases/download/${{ github.ref_name }}/whisp-chromium-patches-windows-x64.zip)
+
+            ### Building Chromium
+            See [contributing.md](https://github.com/${{ github.repository }}/blob/main/chromium/contributing.md) for instructions on building the full Whisp browser from source.
+          files: |
+            artifacts/**/*
+          draft: true
+          prerelease: false

@@ -1,0 +1,37 @@
+node_modules/
+dist/
+.cache/
+*.tsbuildinfo
+*.log
+
+# pnpm
+pnpm-lock.yaml
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Chromium build output
+chromium/src/out/
+
+# Build artifacts
+packages/core/dist/
+packages/extension/dist/
+chromium-extension/dist/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# TypeScript
+*.d.ts
+!packages/core/dist/**/*.d.ts

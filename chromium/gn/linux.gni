@@ -1,0 +1,19 @@
+# Linux-specific GN args for Whisp release build
+# Usage: gn args out/whisp --args="import(\"//path/to/whisp/chromium/gn/whisp.gni\")"
+# Or append the lines below to your args.gn
+
+import("//path/to/whisp/chromium/gn/whisp.gni")
+
+# Linux packaging
+enable_linux_installer = true
+linux_package_type = "both"   # "deb", "rpm", or "both"
+linux_sandbox_path = "/usr/lib/chromium-browser/chrome-sandbox"
+
+# Build targets:
+#   autoninja -C out/whisp chrome                    → binary + chrome_sandbox
+#   autoninja -C out/whisp linux_package_deb          → .deb package
+#   autoninja -C out/whisp linux_package_rpm          → .rpm package
+#   autoninja -C out/whisp linux_package              → both deb + rpm
+#
+# For AppImage, after building chrome binary:
+#   chromium/packaging/linux/build_appimage.sh

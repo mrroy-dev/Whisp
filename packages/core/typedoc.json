@@ -1,0 +1,9 @@
+{
+  "name": "WHISP API",
+  "entryPoints": ["src/index.ts"],
+  "exclude": ["node_modules", "test/**/*"],
+  "out": "../../../whisp-docs/public/api",
+  "excludePrivate": true,
+  "excludeProtected": true,
+  "excludeExternals": true
+}

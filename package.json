@@ -1,0 +1,42 @@
+{
+  "name": "@whisp-ai/whisp",
+  "version": "1.0.0",
+  "description": "Empowering language to transform human words into action.",
+  "workspaces": [
+    "packages/core",
+    "packages/extension",
+    "chromium-extension"
+  ],
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r --sequential build",
+    "test": "pnpm -r --sequential test",
+    "clean": "node -e \"require('fs').rmSync('node_modules',{force:true,recursive:true})\" && pnpm -r exec -- node -e \"require('fs').rmSync('node_modules',{force:true,recursive:true}); require('fs').rmSync('dist',{force:true,recursive:true})\"",
+    "format": "prettier --write . --ignore-unknown",
+    "format:check": "prettier --check . --ignore-unknown",
+    "prepare": "husky",
+    "build:all": "node scripts/build.js",
+    "package": "node scripts/package.js",
+    "build:chromium": "node scripts/build_chromium.js",
+    "release": "node scripts/release.js"
+  },
+  "author": "WhispAI",
+  "license": "MIT",
+  "keywords": [
+    "whisp",
+    "whisp-ai"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WhispAI/whisp.git"
+  },
+  "devDependencies": {
+    "husky": "9.1.7",
+    "prettier": "^2.8.8",
+    "typescript": "^5.8.3"
+  }
+}

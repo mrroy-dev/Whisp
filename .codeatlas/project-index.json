@@ -1,0 +1,4444 @@
+{
+  "version": 1,
+  "generatedAt": "2026-06-15T15:55:49.680Z",
+  "rootPath": "/home/mr-roy/Desktop/Red Code/Whisp",
+  "summary": {
+    "totalFiles": 124,
+    "totalEdges": 372,
+    "totalLines": 20468,
+    "languages": [
+      "js"
+    ],
+    "flowStages": {
+      "start": 20,
+      "main": 16,
+      "core": 57,
+      "helpers": 31
+    }
+  },
+  "files": [
+    {
+      "path": "chromium-extension/postcss.config.mjs",
+      "fileType": "config",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".mjs",
+      "lines": 7,
+      "size": 90,
+      "collaboration": {
+        "status": "isolated",
+        "impact": "solo",
+        "summary": "No local collaboration links yet.",
+        "score": 0
+      },
+      "crossStageLinks": 0,
+      "impactScore": 0,
+      "summary": "Support or shared utility code. Type: config",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [],
+      "usedBy": []
+    },
+    {
+      "path": "chromium-extension/src/background/agent/browser-service.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 201,
+      "size": 6385,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 1,
+      "impactScore": 2,
+      "summary": "Core business logic. Classes: SimpleBrowserService. Functions: extractPageContent, traverse",
+      "functions": [
+        "extractPageContent",
+        "traverse"
+      ],
+      "classes": [
+        "SimpleBrowserService"
+      ],
+      "exports": [
+        "SimpleBrowserService"
+      ],
+      "imports": [],
+      "usedBy": [
+        "chromium-extension/src/background/agent/index.ts"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/background/agent/chat-service.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 97,
+      "size": 2504,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 3
+      },
+      "crossStageLinks": 1,
+      "impactScore": 3,
+      "summary": "Core business logic. Classes: SimpleChatService. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "SimpleChatService"
+      ],
+      "exports": [
+        "SimpleChatService"
+      ],
+      "imports": [
+        "chromium-extension/src/db/db-service.ts"
+      ],
+      "usedBy": [
+        "chromium-extension/src/background/agent/index.ts"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/background/agent/file-agent.ts",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 104,
+      "size": 2897,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 1,
+      "impactScore": 2,
+      "summary": "Main orchestration code. Classes: WriteFileAgent. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "WriteFileAgent"
+      ],
+      "exports": [
+        "WriteFileAgent"
+      ],
+      "imports": [],
+      "usedBy": [
+        "chromium-extension/src/background/index.ts"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/background/agent/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 10,
+      "size": 342,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 5
+      },
+      "crossStageLinks": 2,
+      "impactScore": 5,
+      "summary": "Entry or startup logic. Functions: initAgentServices",
+      "functions": [
+        "initAgentServices"
+      ],
+      "classes": [],
+      "exports": [
+        "initAgentServices"
+      ],
+      "imports": [
+        "chromium-extension/src/background/agent/chat-service.ts",
+        "chromium-extension/src/background/agent/browser-service.ts"
+      ],
+      "usedBy": [
+        "chromium-extension/src/background/index.ts"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/background/agent/utils.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 41,
+      "size": 1794,
+      "collaboration": {
+        "status": "isolated",
+        "impact": "solo",
+        "summary": "No local collaboration links yet.",
+        "score": 0
+      },
+      "crossStageLinks": 0,
+      "impactScore": 0,
+      "summary": "Support or shared utility code. Functions: wrapToolInputSchema",
+      "functions": [
+        "wrapToolInputSchema"
+      ],
+      "classes": [],
+      "exports": [
+        "wrapToolInputSchema"
+      ],
+      "imports": [],
+      "usedBy": []
+    },
+    {
+      "path": "chromium-extension/src/background/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 435,
+      "size": 11752,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 3
+      },
+      "crossStageLinks": 1,
+      "impactScore": 3,
+      "summary": "Entry or startup logic. Functions: loadLLMs, init, handleChat, handleCallback",
+      "functions": [
+        "loadLLMs",
+        "init",
+        "handleChat",
+        "handleCallback",
+        "handleUploadFile",
+        "handleStop",
+        "handleGetTabs",
+        "printLog",
+        "addListener"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "chromium-extension/src/background/agent/index.ts",
+        "chromium-extension/src/background/agent/file-agent.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "chromium-extension/src/content/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 6,
+      "size": 155,
+      "collaboration": {
+        "status": "isolated",
+        "impact": "solo",
+        "summary": "No local collaboration links yet.",
+        "score": 0
+      },
+      "crossStageLinks": 0,
+      "impactScore": 0,
+      "summary": "Entry or startup logic. Type: entry",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [],
+      "usedBy": []
+    },
+    {
+      "path": "chromium-extension/src/db/db-service.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 102,
+      "size": 2699,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 10
+      },
+      "crossStageLinks": 3,
+      "impactScore": 10,
+      "summary": "Core business logic. Classes: DBService. Functions: getSession, listSessions",
+      "functions": [
+        "getSession",
+        "listSessions"
+      ],
+      "classes": [
+        "DBService"
+      ],
+      "exports": [
+        "DBService",
+        "dbService"
+      ],
+      "imports": [
+        "chromium-extension/src/db/db.ts"
+      ],
+      "usedBy": [
+        "chromium-extension/src/background/agent/chat-service.ts",
+        "chromium-extension/src/sidebar/components/SessionHistory.tsx",
+        "chromium-extension/src/sidebar/hooks/useSessionManagement.ts"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/db/db.ts",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 155,
+      "size": 3625,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 1,
+      "impactScore": 2,
+      "summary": "Main orchestration code. Functions: initDB, createSession, getSession, deleteSession",
+      "functions": [
+        "initDB",
+        "createSession",
+        "getSession",
+        "deleteSession",
+        "updateSessionTitle",
+        "updateSessionTimestamp",
+        "listSessions",
+        "saveMessages",
+        "loadMessages",
+        "clearMessagesForSession",
+        "upgrade"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [],
+      "usedBy": [
+        "chromium-extension/src/db/db-service.ts"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/llm/llm.interface.ts",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 64,
+      "size": 1054,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 3
+      },
+      "crossStageLinks": 1,
+      "impactScore": 3,
+      "summary": "Main orchestration code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [],
+      "usedBy": [
+        "chromium-extension/src/llm/llm.ts",
+        "chromium-extension/src/options/index.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/llm/llm.ts",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 134,
+      "size": 3130,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 3
+      },
+      "crossStageLinks": 1,
+      "impactScore": 3,
+      "summary": "Main orchestration code. Functions: fetchModelsData, supportsImageInput, filterImageSupportedModels, getProvidersWithImageSupport",
+      "functions": [
+        "fetchModelsData",
+        "supportsImageInput",
+        "filterImageSupportedModels",
+        "getProvidersWithImageSupport",
+        "providersToOptions",
+        "modelsToOptions",
+        "getDefaultBaseURL"
+      ],
+      "classes": [],
+      "exports": [
+        "supportsImageInput",
+        "filterImageSupportedModels",
+        "getProvidersWithImageSupport",
+        "providersToOptions",
+        "modelsToOptions",
+        "getDefaultBaseURL"
+      ],
+      "imports": [
+        "chromium-extension/src/llm/llm.interface.ts"
+      ],
+      "usedBy": [
+        "chromium-extension/src/options/index.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/options/index.tsx",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 474,
+      "size": 14991,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 9
+      },
+      "crossStageLinks": 3,
+      "impactScore": 9,
+      "summary": "Entry or startup logic. Functions: OptionsPage, handleChange, loadModels, handleSave",
+      "functions": [
+        "OptionsPage",
+        "handleChange",
+        "loadModels",
+        "handleSave",
+        "handleLLMChange",
+        "handleResetBaseURL"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "chromium-extension/src/sidebar/providers/ThemeProvider.tsx",
+        "chromium-extension/src/llm/llm.ts",
+        "chromium-extension/src/llm/llm.interface.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "chromium-extension/src/sidebar/MarkdownRenderer.tsx",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 37,
+      "size": 803,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 5
+      },
+      "crossStageLinks": 0,
+      "impactScore": 5,
+      "summary": "Main orchestration code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [
+        "MarkdownRenderer"
+      ],
+      "imports": [],
+      "usedBy": [
+        "chromium-extension/src/sidebar/components/HumanCard.tsx",
+        "chromium-extension/src/sidebar/components/MessageItem.tsx",
+        "chromium-extension/src/sidebar/components/TextItem.tsx",
+        "chromium-extension/src/sidebar/components/ThinkingItem.tsx",
+        "chromium-extension/src/sidebar/components/ToolCallItem.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/components/AgentExecutionCard.tsx",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 236,
+      "size": 8829,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 8
+      },
+      "crossStageLinks": 1,
+      "impactScore": 8,
+      "summary": "Main orchestration code. Functions: handleHumanResponse, getStatusIcon, getBorderColor",
+      "functions": [
+        "handleHumanResponse",
+        "getStatusIcon",
+        "getBorderColor"
+      ],
+      "classes": [],
+      "exports": [
+        "AgentExecutionCard"
+      ],
+      "imports": [
+        "chromium-extension/src/sidebar/components/TextItem.tsx",
+        "chromium-extension/src/sidebar/components/HumanCard.tsx",
+        "chromium-extension/src/sidebar/types.ts",
+        "chromium-extension/src/sidebar/components/ThinkingItem.tsx",
+        "chromium-extension/src/sidebar/components/ToolCallItem.tsx"
+      ],
+      "usedBy": [
+        "chromium-extension/src/sidebar/components/MessageItem.tsx",
+        "chromium-extension/src/sidebar/components/WorkflowCard.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/components/ChatInput.tsx",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 155,
+      "size": 4756,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 5
+      },
+      "crossStageLinks": 2,
+      "impactScore": 5,
+      "summary": "Main orchestration code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [
+        "ChatInput"
+      ],
+      "imports": [
+        "chromium-extension/src/sidebar/types.ts",
+        "chromium-extension/src/sidebar/components/WebpageMentionInput.tsx"
+      ],
+      "usedBy": [
+        "chromium-extension/src/sidebar/index.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/components/HumanCard.tsx",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 288,
+      "size": 7881,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 4
+      },
+      "crossStageLinks": 1,
+      "impactScore": 4,
+      "summary": "Main orchestration code. Functions: sendHumanCallback, handleConfirm, handleCancel, handleChange",
+      "functions": [
+        "sendHumanCallback",
+        "handleConfirm",
+        "handleCancel",
+        "handleChange",
+        "handleComplete"
+      ],
+      "classes": [],
+      "exports": [
+        "HumanCard"
+      ],
+      "imports": [
+        "chromium-extension/src/sidebar/types.ts",
+        "chromium-extension/src/sidebar/MarkdownRenderer.tsx"
+      ],
+      "usedBy": [
+        "chromium-extension/src/sidebar/components/AgentExecutionCard.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/components/MessageItem.tsx",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 274,
+      "size": 8668,
+      "collaboration": {
+        "status": "active",
+        "impact": "orchestrator",
+        "summary": "Pulls together several files to do its work.",
+        "score": 10
+      },
+      "crossStageLinks": 2,
+      "impactScore": 10,
+      "summary": "Main orchestration code. Functions: decodeHtmlEntities, renderContentWithWebRefs, pushText, handleWebRefClick",
+      "functions": [
+        "decodeHtmlEntities",
+        "renderContentWithWebRefs",
+        "pushText",
+        "handleWebRefClick"
+      ],
+      "classes": [],
+      "exports": [
+        "MessageItem"
+      ],
+      "imports": [
+        "chromium-extension/src/sidebar/components/TextItem.tsx",
+        "chromium-extension/src/sidebar/types.ts",
+        "chromium-extension/src/sidebar/components/ThinkingItem.tsx",
+        "chromium-extension/src/sidebar/components/ToolCallItem.tsx",
+        "chromium-extension/src/sidebar/components/WorkflowCard.tsx",
+        "chromium-extension/src/sidebar/MarkdownRenderer.tsx",
+        "chromium-extension/src/sidebar/components/AgentExecutionCard.tsx"
+      ],
+      "usedBy": [
+        "chromium-extension/src/sidebar/index.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/components/SessionHistory.tsx",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 145,
+      "size": 4037,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 4
+      },
+      "crossStageLinks": 2,
+      "impactScore": 4,
+      "summary": "Main orchestration code. Functions: loadSessions, handleDeleteSession, handleSelectSession, formatDate",
+      "functions": [
+        "loadSessions",
+        "handleDeleteSession",
+        "handleSelectSession",
+        "formatDate"
+      ],
+      "classes": [],
+      "exports": [
+        "SessionHistory"
+      ],
+      "imports": [
+        "chromium-extension/src/db/db-service.ts"
+      ],
+      "usedBy": [
+        "chromium-extension/src/sidebar/index.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/components/TextItem.tsx",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 21,
+      "size": 516,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 3
+      },
+      "crossStageLinks": 0,
+      "impactScore": 3,
+      "summary": "Main orchestration code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [
+        "TextItem"
+      ],
+      "imports": [
+        "chromium-extension/src/sidebar/MarkdownRenderer.tsx"
+      ],
+      "usedBy": [
+        "chromium-extension/src/sidebar/components/AgentExecutionCard.tsx",
+        "chromium-extension/src/sidebar/components/MessageItem.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/components/ThinkingItem.tsx",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 62,
+      "size": 1584,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 4
+      },
+      "crossStageLinks": 0,
+      "impactScore": 4,
+      "summary": "Main orchestration code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [
+        "ThinkingItem"
+      ],
+      "imports": [
+        "chromium-extension/src/sidebar/MarkdownRenderer.tsx"
+      ],
+      "usedBy": [
+        "chromium-extension/src/sidebar/components/AgentExecutionCard.tsx",
+        "chromium-extension/src/sidebar/components/MessageItem.tsx",
+        "chromium-extension/src/sidebar/components/WorkflowCard.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/components/ToolCallItem.tsx",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 140,
+      "size": 4857,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 12
+      },
+      "crossStageLinks": 3,
+      "impactScore": 12,
+      "summary": "Main orchestration code. Functions: getStatusIcon",
+      "functions": [
+        "getStatusIcon"
+      ],
+      "classes": [],
+      "exports": [
+        "ToolCallItem"
+      ],
+      "imports": [
+        "chromium-extension/src/sidebar/utils/index.ts",
+        "chromium-extension/src/sidebar/types.ts",
+        "chromium-extension/src/sidebar/MarkdownRenderer.tsx",
+        "chromium-extension/src/sidebar/utils/toolNameMapper.ts"
+      ],
+      "usedBy": [
+        "chromium-extension/src/sidebar/components/AgentExecutionCard.tsx",
+        "chromium-extension/src/sidebar/components/MessageItem.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/components/WebpageMentionInput.tsx",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 554,
+      "size": 17180,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 1
+      },
+      "crossStageLinks": 0,
+      "impactScore": 1,
+      "summary": "Main orchestration code. Functions: escapeHtml, formatValueForDisplay, htmlToPlainText, htmlToValue",
+      "functions": [
+        "escapeHtml",
+        "formatValueForDisplay",
+        "htmlToPlainText",
+        "htmlToValue",
+        "getHtmlToCaret",
+        "ensureSpaceAfterElement",
+        "listener",
+        "handleClickOutside"
+      ],
+      "classes": [],
+      "exports": [
+        "WebpageMentionInput"
+      ],
+      "imports": [],
+      "usedBy": [
+        "chromium-extension/src/sidebar/components/ChatInput.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/components/WorkflowCard.tsx",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 117,
+      "size": 3288,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 5
+      },
+      "crossStageLinks": 1,
+      "impactScore": 5,
+      "summary": "Main orchestration code. Functions: sendWorkflowConfirmCallback, buildAgentGroups",
+      "functions": [
+        "sendWorkflowConfirmCallback",
+        "buildAgentGroups"
+      ],
+      "classes": [],
+      "exports": [
+        "WorkflowCard"
+      ],
+      "imports": [
+        "chromium-extension/src/sidebar/types.ts",
+        "chromium-extension/src/sidebar/components/AgentExecutionCard.tsx",
+        "chromium-extension/src/sidebar/components/ThinkingItem.tsx"
+      ],
+      "usedBy": [
+        "chromium-extension/src/sidebar/components/MessageItem.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/hooks/useChatCallbacks.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 462,
+      "size": 15950,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 3
+      },
+      "crossStageLinks": 1,
+      "impactScore": 3,
+      "summary": "Support or shared utility code. Functions: useChatCallbacks",
+      "functions": [
+        "useChatCallbacks"
+      ],
+      "classes": [],
+      "exports": [
+        "useChatCallbacks"
+      ],
+      "imports": [
+        "chromium-extension/src/sidebar/types.ts"
+      ],
+      "usedBy": [
+        "chromium-extension/src/sidebar/index.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/hooks/useFileUpload.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 64,
+      "size": 1872,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 3
+      },
+      "crossStageLinks": 1,
+      "impactScore": 3,
+      "summary": "Support or shared utility code. Functions: useFileUpload, listener",
+      "functions": [
+        "useFileUpload",
+        "listener"
+      ],
+      "classes": [],
+      "exports": [
+        "useFileUpload"
+      ],
+      "imports": [
+        "chromium-extension/src/sidebar/types.ts"
+      ],
+      "usedBy": [
+        "chromium-extension/src/sidebar/index.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/hooks/useSessionManagement.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 63,
+      "size": 1870,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 6
+      },
+      "crossStageLinks": 2,
+      "impactScore": 6,
+      "summary": "Support or shared utility code. Functions: useSessionManagement",
+      "functions": [
+        "useSessionManagement"
+      ],
+      "classes": [],
+      "exports": [
+        "useSessionManagement"
+      ],
+      "imports": [
+        "chromium-extension/src/db/db-service.ts",
+        "chromium-extension/src/sidebar/utils/messageConverter.ts",
+        "chromium-extension/src/sidebar/types.ts"
+      ],
+      "usedBy": [
+        "chromium-extension/src/sidebar/index.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/hooks/useThemeColors.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 36,
+      "size": 928,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 1
+      },
+      "crossStageLinks": 0,
+      "impactScore": 1,
+      "summary": "Support or shared utility code. Functions: useThemeColors",
+      "functions": [
+        "useThemeColors"
+      ],
+      "classes": [],
+      "exports": [
+        "useThemeColors"
+      ],
+      "imports": [],
+      "usedBy": [
+        "chromium-extension/src/sidebar/providers/ThemeProvider.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/index.tsx",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 393,
+      "size": 11825,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 24
+      },
+      "crossStageLinks": 8,
+      "impactScore": 24,
+      "summary": "Entry or startup logic. Functions: AppRun, handleScroll, handleMessage, handleStorageChange",
+      "functions": [
+        "AppRun",
+        "handleScroll",
+        "handleMessage",
+        "handleStorageChange"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "chromium-extension/src/sidebar/components/ChatInput.tsx",
+        "chromium-extension/src/sidebar/components/SessionHistory.tsx",
+        "chromium-extension/src/sidebar/hooks/useFileUpload.ts",
+        "chromium-extension/src/sidebar/components/MessageItem.tsx",
+        "chromium-extension/src/sidebar/types.ts",
+        "chromium-extension/src/sidebar/hooks/useChatCallbacks.ts",
+        "chromium-extension/src/sidebar/hooks/useSessionManagement.ts",
+        "chromium-extension/src/sidebar/providers/ThemeProvider.tsx"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "chromium-extension/src/sidebar/providers/ThemeProvider.tsx",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".tsx",
+      "lines": 43,
+      "size": 1209,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 5
+      },
+      "crossStageLinks": 2,
+      "impactScore": 5,
+      "summary": "Support or shared utility code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [
+        "ThemeProvider"
+      ],
+      "imports": [
+        "chromium-extension/src/sidebar/hooks/useThemeColors.ts"
+      ],
+      "usedBy": [
+        "chromium-extension/src/options/index.tsx",
+        "chromium-extension/src/sidebar/index.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/types.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 115,
+      "size": 2884,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 25
+      },
+      "crossStageLinks": 7,
+      "impactScore": 25,
+      "summary": "Support or shared utility code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [],
+      "usedBy": [
+        "chromium-extension/src/sidebar/components/AgentExecutionCard.tsx",
+        "chromium-extension/src/sidebar/components/ChatInput.tsx",
+        "chromium-extension/src/sidebar/components/HumanCard.tsx",
+        "chromium-extension/src/sidebar/components/MessageItem.tsx",
+        "chromium-extension/src/sidebar/components/ToolCallItem.tsx",
+        "chromium-extension/src/sidebar/components/WorkflowCard.tsx",
+        "chromium-extension/src/sidebar/hooks/useChatCallbacks.ts",
+        "chromium-extension/src/sidebar/hooks/useFileUpload.ts",
+        "chromium-extension/src/sidebar/hooks/useSessionManagement.ts",
+        "chromium-extension/src/sidebar/index.tsx",
+        "chromium-extension/src/sidebar/utils/messageConverter.ts"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/utils/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 17,
+      "size": 290,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 1,
+      "impactScore": 2,
+      "summary": "Entry or startup logic. Functions: isJsonStr",
+      "functions": [
+        "isJsonStr"
+      ],
+      "classes": [],
+      "exports": [
+        "isJsonStr"
+      ],
+      "imports": [],
+      "usedBy": [
+        "chromium-extension/src/sidebar/components/ToolCallItem.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/utils/messageConverter.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 128,
+      "size": 4148,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 0,
+      "impactScore": 2,
+      "summary": "Support or shared utility code. Functions: convertWhispMessagesToChatMessages",
+      "functions": [
+        "convertWhispMessagesToChatMessages"
+      ],
+      "classes": [],
+      "exports": [
+        "convertWhispMessagesToChatMessages"
+      ],
+      "imports": [
+        "chromium-extension/src/sidebar/types.ts"
+      ],
+      "usedBy": [
+        "chromium-extension/src/sidebar/hooks/useSessionManagement.ts"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/sidebar/utils/toolNameMapper.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 19,
+      "size": 482,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 1,
+      "impactScore": 2,
+      "summary": "Entry or startup logic. Functions: getToolDisplayName",
+      "functions": [
+        "getToolDisplayName"
+      ],
+      "classes": [],
+      "exports": [
+        "getToolDisplayName"
+      ],
+      "imports": [],
+      "usedBy": [
+        "chromium-extension/src/sidebar/components/ToolCallItem.tsx"
+      ]
+    },
+    {
+      "path": "chromium-extension/src/types/chrome.d.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 64,
+      "size": 2012,
+      "collaboration": {
+        "status": "isolated",
+        "impact": "solo",
+        "summary": "No local collaboration links yet.",
+        "score": 0
+      },
+      "crossStageLinks": 0,
+      "impactScore": 0,
+      "summary": "Support or shared utility code. Functions: get, addListener",
+      "functions": [
+        "get",
+        "addListener"
+      ],
+      "classes": [],
+      "exports": [
+        "get",
+        "addListener"
+      ],
+      "imports": [],
+      "usedBy": []
+    },
+    {
+      "path": "chromium-extension/tailwind.config.js",
+      "fileType": "config",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".js",
+      "lines": 9,
+      "size": 181,
+      "collaboration": {
+        "status": "isolated",
+        "impact": "solo",
+        "summary": "No local collaboration links yet.",
+        "score": 0
+      },
+      "crossStageLinks": 0,
+      "impactScore": 0,
+      "summary": "Support or shared utility code. Type: config",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [],
+      "usedBy": []
+    },
+    {
+      "path": "chromium-extension/webpack.config.js",
+      "fileType": "config",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".js",
+      "lines": 68,
+      "size": 1502,
+      "collaboration": {
+        "status": "isolated",
+        "impact": "solo",
+        "summary": "No local collaboration links yet.",
+        "score": 0
+      },
+      "crossStageLinks": 0,
+      "impactScore": 0,
+      "summary": "Support or shared utility code. Functions: chunks",
+      "functions": [
+        "chunks"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/jest.config.js",
+      "fileType": "config",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".js",
+      "lines": 17,
+      "size": 339,
+      "collaboration": {
+        "status": "isolated",
+        "impact": "solo",
+        "summary": "No local collaboration links yet.",
+        "score": 0
+      },
+      "crossStageLinks": 0,
+      "impactScore": 0,
+      "summary": "Support or shared utility code. Type: config",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/rollup.config.debug.js",
+      "fileType": "config",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".js",
+      "lines": 67,
+      "size": 1399,
+      "collaboration": {
+        "status": "isolated",
+        "impact": "solo",
+        "summary": "No local collaboration links yet.",
+        "score": 0
+      },
+      "crossStageLinks": 0,
+      "impactScore": 0,
+      "summary": "Support or shared utility code. Type: config",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/rollup.config.js",
+      "fileType": "config",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".js",
+      "lines": 62,
+      "size": 1288,
+      "collaboration": {
+        "status": "isolated",
+        "impact": "solo",
+        "summary": "No local collaboration links yet.",
+        "score": 0
+      },
+      "crossStageLinks": 0,
+      "impactScore": 0,
+      "summary": "Support or shared utility code. Type: config",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/src/agent/a2a.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 10,
+      "size": 191,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 3
+      },
+      "crossStageLinks": 1,
+      "impactScore": 3,
+      "summary": "Core business logic. Classes: A2aClient",
+      "functions": [],
+      "classes": [
+        "A2aClient"
+      ],
+      "exports": [
+        "A2aClient"
+      ],
+      "imports": [
+        "packages/core/src/agent/base.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/types/agent.types.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/agent-context.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 120,
+      "size": 3111,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 57
+      },
+      "crossStageLinks": 12,
+      "impactScore": 57,
+      "summary": "Core business logic. Classes: TaskContext, AgentContext. Functions: constructor, pause, setPause, reset",
+      "functions": [
+        "constructor",
+        "pause",
+        "setPause",
+        "reset"
+      ],
+      "classes": [
+        "TaskContext",
+        "AgentContext"
+      ],
+      "exports": [
+        "TaskContext",
+        "AgentContext"
+      ],
+      "imports": [
+        "packages/core/src/agent/index.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/agent/chain.ts",
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/agent-llm.ts",
+        "packages/core/src/agent/base.ts",
+        "packages/core/src/agent/browser/browser-base.ts",
+        "packages/core/src/agent/browser/browser-labels.ts",
+        "packages/core/src/agent/browser/browser-screen.ts",
+        "packages/core/src/agent/whisp.ts",
+        "packages/core/src/agent/plan.ts",
+        "packages/core/src/agent/replan.ts",
+        "packages/core/src/chat/tools/agent-wrap-tool.ts",
+        "packages/core/src/config/global.ts",
+        "packages/core/src/index.ts",
+        "packages/core/src/llm/rlm.ts",
+        "packages/core/src/memory/index.ts",
+        "packages/core/src/memory/snapshot.ts",
+        "packages/core/src/prompt/agent.ts",
+        "packages/core/src/prompt/plan.ts",
+        "packages/core/src/tools/foreach-task.ts",
+        "packages/core/src/tools/human-interact.ts",
+        "packages/core/src/tools/index.ts",
+        "packages/core/src/tools/task-node-status.ts",
+        "packages/core/src/tools/task-result-check.ts",
+        "packages/core/src/tools/todo-list-manager.ts",
+        "packages/core/src/tools/variable-storage.ts",
+        "packages/core/src/tools/watch-trigger.ts",
+        "packages/core/src/tools/wrapper.ts",
+        "packages/core/src/types/agent.types.ts",
+        "packages/core/src/types/config.types.ts",
+        "packages/core/src/types/llm.types.ts",
+        "packages/core/src/types/tools.types.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/agent-llm.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 401,
+      "size": 10991,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 26
+      },
+      "crossStageLinks": 5,
+      "impactScore": 26,
+      "summary": "Core business logic. Functions: defaultLLMProviderOptions, defaultMessageProviderOptions, convertTools, convertToolResult",
+      "functions": [
+        "defaultLLMProviderOptions",
+        "defaultMessageProviderOptions",
+        "convertTools",
+        "convertToolResult",
+        "callAgentLLM",
+        "estimatePromptTokens",
+        "estimateTokens",
+        "appendUserConversation"
+      ],
+      "classes": [],
+      "exports": [
+        "defaultLLMProviderOptions",
+        "defaultMessageProviderOptions",
+        "convertTools",
+        "getTool",
+        "convertToolResult",
+        "estimatePromptTokens",
+        "estimateTokens"
+      ],
+      "imports": [
+        "packages/core/src/config/index.ts",
+        "packages/core/src/memory/index.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/base.ts",
+        "packages/core/src/chat/chat-agent.ts",
+        "packages/core/src/llm/rlm.ts",
+        "packages/core/src/memory/index.ts",
+        "packages/core/src/memory/memory.ts",
+        "packages/core/src/tools/task-result-check.ts",
+        "packages/core/src/tools/todo-list-manager.ts",
+        "packages/core/test/llm/claude.test.ts",
+        "packages/core/test/llm/openai.test.ts",
+        "packages/core/test/llm/openrouter.test.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/base.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 554,
+      "size": 15171,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 36
+      },
+      "crossStageLinks": 9,
+      "impactScore": 36,
+      "summary": "Core business logic. Classes: Agent. Functions: constructor, addTool, onTaskStatus, PlanDescription",
+      "functions": [
+        "constructor",
+        "addTool",
+        "onTaskStatus",
+        "PlanDescription",
+        "McpClient"
+      ],
+      "classes": [
+        "Agent"
+      ],
+      "exports": [
+        "Agent"
+      ],
+      "imports": [
+        "packages/core/src/config/index.ts",
+        "packages/core/src/common/log.ts",
+        "packages/core/src/memory/index.ts",
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/tools/wrapper.ts",
+        "packages/core/src/agent/chain.ts",
+        "packages/core/src/tools/index.ts",
+        "packages/core/src/types/index.ts",
+        "packages/core/src/agent/agent-llm.ts",
+        "packages/core/src/llm/react.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/tools/task-result-check.ts",
+        "packages/core/src/tools/todo-list-manager.ts",
+        "packages/core/src/prompt/agent.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/a2a.ts",
+        "packages/core/src/agent/browser/browser-base.ts",
+        "packages/core/src/agent/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/browser/browser-base.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 247,
+      "size": 6533,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 16
+      },
+      "crossStageLinks": 4,
+      "impactScore": 16,
+      "summary": "Core business logic. Classes: BaseBrowserAgent",
+      "functions": [],
+      "classes": [
+        "BaseBrowserAgent"
+      ],
+      "exports": [
+        "AGENT_NAME"
+      ],
+      "imports": [
+        "packages/core/src/agent/base.ts",
+        "packages/core/src/agent/browser/utils.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/browser/browser-labels.ts",
+        "packages/core/src/agent/browser/browser-screen.ts",
+        "packages/core/src/agent/browser/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/browser/browser-labels.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 1058,
+      "size": 34393,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 21
+      },
+      "crossStageLinks": 6,
+      "impactScore": 21,
+      "summary": "Core business logic. Classes: BaseBrowserLabelsAgent. Functions: typing, do_click, simulateMouseEvent, hover_to",
+      "functions": [
+        "typing",
+        "do_click",
+        "simulateMouseEvent",
+        "hover_to",
+        "get_select_options",
+        "select_option",
+        "scroll_by",
+        "findNodes",
+        "findScrollableElements",
+        "getVisibleArea",
+        "getComputedZIndex",
+        "constructor",
+        "handlePseudoHtmlText"
+      ],
+      "classes": [
+        "BaseBrowserLabelsAgent"
+      ],
+      "exports": [],
+      "imports": [
+        "packages/core/src/config/index.ts",
+        "packages/core/src/common/log.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/agent/browser/build-dom-tree.ts",
+        "packages/core/src/types/index.ts",
+        "packages/core/src/agent/browser/utils.ts",
+        "packages/core/src/agent/browser/browser-base.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/browser/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/browser/browser-screen.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 435,
+      "size": 12571,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 11
+      },
+      "crossStageLinks": 3,
+      "impactScore": 11,
+      "summary": "Core business logic. Classes: BaseBrowserScreenAgent. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "BaseBrowserScreenAgent"
+      ],
+      "exports": [],
+      "imports": [
+        "packages/core/src/agent/browser/browser-base.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/types/index.ts",
+        "packages/core/src/common/utils.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/browser/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/browser/build-dom-tree.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 957,
+      "size": 29090,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 1
+      },
+      "crossStageLinks": 0,
+      "impactScore": 1,
+      "summary": "Core business logic. Functions: run_build_dom_tree, getCachedComputedStyle, get_clickable_elements, get_highlight_element",
+      "functions": [
+        "run_build_dom_tree",
+        "getCachedComputedStyle",
+        "get_clickable_elements",
+        "get_highlight_element",
+        "remove_highlight",
+        "clickable_elements_to_string",
+        "get_all_text_till_next_clickable_element",
+        "collect_text",
+        "has_parent_with_highlight_index",
+        "process_node",
+        "create_selector_map",
+        "create_area_map",
+        "get_element_real_bounding_rect",
+        "parse_node",
+        "build_dom_tree",
+        "highlightElement",
+        "getXPathTree",
+        "isElementAccepted",
+        "normalizeLabel",
+        "getLabelFromAriaLabelledBy",
+        "getSiblingLabel",
+        "getAccessibleLabel",
+        "isInteractiveElement",
+        "getElementEventListeners",
+        "isElementVisible"
+      ],
+      "classes": [],
+      "exports": [
+        "run_build_dom_tree"
+      ],
+      "imports": [],
+      "usedBy": [
+        "packages/core/src/agent/browser/browser-labels.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/browser/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 11,
+      "size": 271,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 10
+      },
+      "crossStageLinks": 3,
+      "impactScore": 10,
+      "summary": "Entry or startup logic. Type: entry",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/agent/browser/browser-base.ts",
+        "packages/core/src/agent/browser/browser-labels.ts",
+        "packages/core/src/agent/browser/browser-screen.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/browser/utils.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 577,
+      "size": 17451,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 10
+      },
+      "crossStageLinks": 3,
+      "impactScore": 10,
+      "summary": "Support or shared utility code. Functions: extract_page_content, mark_screenshot_highlight_elements, loadImageAny, createCanvasAny",
+      "functions": [
+        "extract_page_content",
+        "mark_screenshot_highlight_elements",
+        "loadImageAny",
+        "createCanvasAny"
+      ],
+      "classes": [],
+      "exports": [
+        "extract_page_content",
+        "mark_screenshot_highlight_elements"
+      ],
+      "imports": [
+        "packages/core/src/common/utils.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/browser/browser-base.ts",
+        "packages/core/src/agent/browser/browser-labels.ts",
+        "packages/core/src/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/chain.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 102,
+      "size": 2379,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 17
+      },
+      "crossStageLinks": 4,
+      "impactScore": 17,
+      "summary": "Core business logic. Classes: ToolChain, AgentChain, Chain. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "ToolChain",
+        "AgentChain",
+        "Chain"
+      ],
+      "exports": [
+        "ToolChain",
+        "AgentChain",
+        "Chain"
+      ],
+      "imports": [
+        "packages/core/src/types/tools.types.ts",
+        "packages/core/src/types/llm.types.ts",
+        "packages/core/src/types/agent.types.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/agent/base.ts",
+        "packages/core/src/agent/whisp.ts",
+        "packages/core/src/agent/replan.ts",
+        "packages/core/src/chat/tools/agent-wrap-tool.ts",
+        "packages/core/src/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 18,
+      "size": 332,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 36
+      },
+      "crossStageLinks": 11,
+      "impactScore": 36,
+      "summary": "Entry or startup logic. Type: entry",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/agent/whisp.ts",
+        "packages/core/src/agent/browser/index.ts",
+        "packages/core/src/agent/base.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/agent/whisp.ts",
+        "packages/core/src/chat/chat-context.ts",
+        "packages/core/src/chat/tools/agent-wrap-tool.ts",
+        "packages/core/src/chat/tools/deep-action.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/index.ts",
+        "packages/core/src/prompt/agent.ts",
+        "packages/core/src/prompt/plan.ts",
+        "packages/core/src/types/agent.types.ts",
+        "packages/core/test/core/agents.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/whisp.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 396,
+      "size": 11497,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 26
+      },
+      "crossStageLinks": 7,
+      "impactScore": 26,
+      "summary": "Core business logic. Classes: Whisp. Functions: doRunAgent, onTaskStatus",
+      "functions": [
+        "doRunAgent",
+        "onTaskStatus"
+      ],
+      "classes": [
+        "Whisp"
+      ],
+      "exports": [
+        "Whisp"
+      ],
+      "imports": [
+        "packages/core/src/config/index.ts",
+        "packages/core/src/common/log.ts",
+        "packages/core/src/agent/index.ts",
+        "packages/core/src/agent/plan.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/agent/chain.ts",
+        "packages/core/src/common/tree.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/types/agent.types.ts",
+        "packages/core/src/config/global.ts",
+        "packages/core/src/agent/replan.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/plan.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 188,
+      "size": 5454,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 25
+      },
+      "crossStageLinks": 7,
+      "impactScore": 25,
+      "summary": "Core business logic. Classes: Planner. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "Planner"
+      ],
+      "exports": [
+        "Planner"
+      ],
+      "imports": [
+        "packages/core/src/common/log.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/common/xml.ts",
+        "packages/core/src/types/llm.types.ts",
+        "packages/core/src/types/agent.types.ts",
+        "packages/core/src/prompt/plan.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/whisp.ts",
+        "packages/core/src/agent/replan.ts",
+        "packages/core/src/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/agent/replan.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 253,
+      "size": 9138,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 16
+      },
+      "crossStageLinks": 4,
+      "impactScore": 16,
+      "summary": "Core business logic. Functions: checkTaskReplan, replanWorkflow, mergeWorkflow, getAgentExecutionPrompt",
+      "functions": [
+        "checkTaskReplan",
+        "replanWorkflow",
+        "mergeWorkflow",
+        "getAgentExecutionPrompt",
+        "getExecutionMessages"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/agent/plan.ts",
+        "packages/core/src/agent/chain.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/types/index.ts",
+        "packages/core/src/common/log.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/whisp.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/chat/chat-agent.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 313,
+      "size": 9126,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 27
+      },
+      "crossStageLinks": 6,
+      "impactScore": 27,
+      "summary": "Core business logic. Classes: ChatAgent",
+      "functions": [],
+      "classes": [
+        "ChatAgent"
+      ],
+      "exports": [
+        "ChatAgent"
+      ],
+      "imports": [
+        "packages/core/src/types/index.ts",
+        "packages/core/src/chat/chat-llm.ts",
+        "packages/core/src/common/log.ts",
+        "packages/core/src/config/global.ts",
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/memory/memory.ts",
+        "packages/core/src/chat/chat-context.ts",
+        "packages/core/src/chat/tools/webpage-qa.ts",
+        "packages/core/src/chat/tools/web-search.ts",
+        "packages/core/src/chat/tools/deep-action.ts",
+        "packages/core/src/prompt/chat.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/chat/tools/variable-storage.ts",
+        "packages/core/src/agent/agent-llm.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/chat/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/chat/chat-context.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 33,
+      "size": 997,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 21
+      },
+      "crossStageLinks": 5,
+      "impactScore": 21,
+      "summary": "Core business logic. Classes: ChatContext. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "ChatContext"
+      ],
+      "exports": [
+        "ChatContext"
+      ],
+      "imports": [
+        "packages/core/src/agent/index.ts",
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/chat/chat-agent.ts",
+        "packages/core/src/chat/index.ts",
+        "packages/core/src/chat/tools/agent-wrap-tool.ts",
+        "packages/core/src/chat/tools/deep-action.ts",
+        "packages/core/src/chat/tools/variable-storage.ts",
+        "packages/core/src/chat/tools/web-search.ts",
+        "packages/core/src/chat/tools/webpage-qa.ts",
+        "packages/core/src/config/global.ts",
+        "packages/core/src/types/config.types.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/chat/chat-llm.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 127,
+      "size": 3237,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 5
+      },
+      "crossStageLinks": 2,
+      "impactScore": 5,
+      "summary": "Core business logic. Functions: callChatLLM, convertAssistantToolResults, convertToolResults, convertUserContent",
+      "functions": [
+        "callChatLLM",
+        "convertAssistantToolResults",
+        "convertToolResults",
+        "convertUserContent"
+      ],
+      "classes": [],
+      "exports": [
+        "convertAssistantToolResults",
+        "convertToolResults",
+        "convertUserContent"
+      ],
+      "imports": [
+        "packages/core/src/types/index.ts",
+        "packages/core/src/llm/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/chat/chat-agent.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/chat/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 18,
+      "size": 503,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 21
+      },
+      "crossStageLinks": 7,
+      "impactScore": 21,
+      "summary": "Entry or startup logic. Type: entry",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/chat/chat-agent.ts",
+        "packages/core/src/chat/chat-context.ts",
+        "packages/core/src/chat/tools/web-search.ts",
+        "packages/core/src/chat/tools/webpage-qa.ts",
+        "packages/core/src/chat/tools/agent-wrap-tool.ts",
+        "packages/core/src/chat/tools/deep-action.ts",
+        "packages/core/src/chat/tools/variable-storage.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/src/chat/tools/agent-wrap-tool.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 237,
+      "size": 6763,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 21
+      },
+      "crossStageLinks": 6,
+      "impactScore": 21,
+      "summary": "Core business logic. Classes: AgentWrapTool. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "AgentWrapTool"
+      ],
+      "exports": [
+        "AgentWrapTool"
+      ],
+      "imports": [
+        "packages/core/src/types/index.ts",
+        "packages/core/src/agent/index.ts",
+        "packages/core/src/config/global.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/chat/chat-context.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/agent/chain.ts",
+        "packages/core/src/common/xml.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/chat/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/chat/tools/deep-action.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 209,
+      "size": 7736,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 27
+      },
+      "crossStageLinks": 8,
+      "impactScore": 27,
+      "summary": "Core business logic. Classes: DeepActionTool. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "DeepActionTool"
+      ],
+      "exports": [
+        "TOOL_NAME",
+        "DeepActionTool"
+      ],
+      "imports": [
+        "packages/core/src/types/index.ts",
+        "packages/core/src/config/index.ts",
+        "packages/core/src/common/log.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/config/global.ts",
+        "packages/core/src/agent/index.ts",
+        "packages/core/src/chat/chat-context.ts",
+        "packages/core/src/common/workflow.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/chat/chat-agent.ts",
+        "packages/core/src/chat/index.ts",
+        "packages/core/src/prompt/chat.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/chat/tools/variable-storage.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 93,
+      "size": 2833,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 7
+      },
+      "crossStageLinks": 2,
+      "impactScore": 7,
+      "summary": "Core business logic. Classes: TaskVariableStorageTool. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "TaskVariableStorageTool"
+      ],
+      "exports": [
+        "TOOL_NAME",
+        "TaskVariableStorageTool"
+      ],
+      "imports": [
+        "packages/core/src/chat/chat-context.ts",
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/chat/chat-agent.ts",
+        "packages/core/src/chat/index.ts",
+        "packages/core/src/prompt/chat.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/chat/tools/web-search.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 104,
+      "size": 3347,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 12
+      },
+      "crossStageLinks": 3,
+      "impactScore": 12,
+      "summary": "Core business logic. Classes: WebSearchTool. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "WebSearchTool"
+      ],
+      "exports": [
+        "TOOL_NAME",
+        "WebSearchTool"
+      ],
+      "imports": [
+        "packages/core/src/config/global.ts",
+        "packages/core/src/chat/chat-context.ts",
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/chat/chat-agent.ts",
+        "packages/core/src/chat/index.ts",
+        "packages/core/src/prompt/chat.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/chat/tools/webpage-qa.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 175,
+      "size": 5467,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 22
+      },
+      "crossStageLinks": 6,
+      "impactScore": 22,
+      "summary": "Core business logic. Classes: WebpageQaTool. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "WebpageQaTool"
+      ],
+      "exports": [
+        "TOOL_NAME",
+        "WebpageQaTool"
+      ],
+      "imports": [
+        "packages/core/src/config/index.ts",
+        "packages/core/src/config/global.ts",
+        "packages/core/src/chat/chat-context.ts",
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/types/index.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/prompt/prompt-template.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/chat/chat-agent.ts",
+        "packages/core/src/chat/index.ts",
+        "packages/core/src/prompt/chat.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/common/log.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 179,
+      "size": 4260,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 54
+      },
+      "crossStageLinks": 18,
+      "impactScore": 54,
+      "summary": "Support or shared utility code. Classes: ConsoleTransport, Logger. Functions: constructor, isEnableDebug, isEnableInfo",
+      "functions": [
+        "constructor",
+        "isEnableDebug",
+        "isEnableInfo"
+      ],
+      "classes": [
+        "ConsoleTransport",
+        "Logger"
+      ],
+      "exports": [
+        "ConsoleTransport",
+        "Logger"
+      ],
+      "imports": [],
+      "usedBy": [
+        "packages/core/src/agent/base.ts",
+        "packages/core/src/agent/browser/browser-labels.ts",
+        "packages/core/src/agent/whisp.ts",
+        "packages/core/src/agent/plan.ts",
+        "packages/core/src/agent/replan.ts",
+        "packages/core/src/chat/chat-agent.ts",
+        "packages/core/src/chat/tools/deep-action.ts",
+        "packages/core/src/index.ts",
+        "packages/core/src/llm/react.ts",
+        "packages/core/src/llm/rlm.ts",
+        "packages/core/src/mcp/http.ts",
+        "packages/core/src/mcp/sse.ts",
+        "packages/core/src/memory/index.ts",
+        "packages/core/src/tools/task-result-check.ts",
+        "packages/core/src/tools/todo-list-manager.ts",
+        "packages/core/src/tools/watch-trigger.ts",
+        "packages/core/test/demo.test.ts",
+        "packages/core/test/llm/mcp.test.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/common/tree.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 200,
+      "size": 5902,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 6
+      },
+      "crossStageLinks": 2,
+      "impactScore": 6,
+      "summary": "Support or shared utility code. Functions: buildAgentTree, buildNodeRecursive, detectAndBreakCycles",
+      "functions": [
+        "buildAgentTree",
+        "buildNodeRecursive",
+        "detectAndBreakCycles"
+      ],
+      "classes": [],
+      "exports": [
+        "buildAgentTree"
+      ],
+      "imports": [
+        "packages/core/src/types/agent.types.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/whisp.ts",
+        "packages/core/src/common/xml.ts",
+        "packages/core/src/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/common/utils.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 530,
+      "size": 14873,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 97
+      },
+      "crossStageLinks": 31,
+      "impactScore": 97,
+      "summary": "Support or shared utility code. Functions: sleep, uuidv4, convertToolSchema, toImage",
+      "functions": [
+        "sleep",
+        "uuidv4",
+        "convertToolSchema",
+        "toImage",
+        "toFile",
+        "getMimeType",
+        "compressImageData",
+        "mergeAgents",
+        "sub",
+        "fixJson",
+        "fixXmlTag",
+        "fixDoubleChar",
+        "isSelfClosing",
+        "loadPackage",
+        "targetByScale",
+        "loadImageAny",
+        "createCanvasAny",
+        "replace"
+      ],
+      "classes": [],
+      "exports": [
+        "sleep",
+        "uuidv4",
+        "call_timeout",
+        "convertToolSchema",
+        "toImage",
+        "toFile",
+        "getMimeType",
+        "mergeTools",
+        "mergeAgents",
+        "sub",
+        "fixJson",
+        "fixXmlTag"
+      ],
+      "imports": [
+        "packages/core/src/agent/index.ts",
+        "packages/core/src/types/index.ts",
+        "packages/core/src/types/tools.types.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/agent/agent-llm.ts",
+        "packages/core/src/agent/base.ts",
+        "packages/core/src/agent/browser/browser-base.ts",
+        "packages/core/src/agent/browser/browser-labels.ts",
+        "packages/core/src/agent/browser/browser-screen.ts",
+        "packages/core/src/agent/browser/utils.ts",
+        "packages/core/src/agent/whisp.ts",
+        "packages/core/src/agent/plan.ts",
+        "packages/core/src/agent/replan.ts",
+        "packages/core/src/chat/chat-agent.ts",
+        "packages/core/src/chat/tools/agent-wrap-tool.ts",
+        "packages/core/src/chat/tools/deep-action.ts",
+        "packages/core/src/chat/tools/webpage-qa.ts",
+        "packages/core/src/common/xml.ts",
+        "packages/core/src/llm/react.ts",
+        "packages/core/src/llm/rlm.ts",
+        "packages/core/src/mcp/http.ts",
+        "packages/core/src/mcp/sse.ts",
+        "packages/core/src/memory/index.ts",
+        "packages/core/src/memory/memory.ts",
+        "packages/core/src/prompt/agent.ts",
+        "packages/core/src/prompt/chat.ts",
+        "packages/core/src/prompt/plan.ts",
+        "packages/core/src/tools/human-interact.ts",
+        "packages/core/src/tools/task-result-check.ts",
+        "packages/core/src/tools/todo-list-manager.ts",
+        "packages/core/src/tools/watch-trigger.ts",
+        "packages/core/src/tools/wrapper.ts",
+        "packages/core/test/llm/llm.test.ts",
+        "packages/core/test/llm/mcp.test.ts",
+        "packages/core/test/llm/utils.test.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/common/workflow.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 19,
+      "size": 520,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 4
+      },
+      "crossStageLinks": 2,
+      "impactScore": 4,
+      "summary": "Support or shared utility code. Functions: recursiveTextNode",
+      "functions": [
+        "recursiveTextNode"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/chat/tools/deep-action.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/common/xml.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 358,
+      "size": 11092,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 27
+      },
+      "crossStageLinks": 8,
+      "impactScore": 27,
+      "summary": "Support or shared utility code. Functions: parseWorkflow, getAgentId, parseWorkflowNodes, buildAgentRootXml",
+      "functions": [
+        "parseWorkflow",
+        "getAgentId",
+        "parseWorkflowNodes",
+        "buildAgentRootXml",
+        "extractAgentXmlNode",
+        "getInnerXML",
+        "getOuterXML",
+        "buildSimpleAgentWorkflow",
+        "resetWorkflowXml"
+      ],
+      "classes": [],
+      "exports": [
+        "parseWorkflow",
+        "buildAgentRootXml",
+        "extractAgentXmlNode",
+        "getInnerXML",
+        "getOuterXML",
+        "buildSimpleAgentWorkflow",
+        "resetWorkflowXml"
+      ],
+      "imports": [
+        "packages/core/src/types/agent.types.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/common/tree.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/plan.ts",
+        "packages/core/src/chat/tools/agent-wrap-tool.ts",
+        "packages/core/src/memory/snapshot.ts",
+        "packages/core/src/prompt/agent.ts",
+        "packages/core/src/tools/foreach-task.ts",
+        "packages/core/src/tools/task-node-status.ts",
+        "packages/core/src/tools/watch-trigger.ts",
+        "packages/core/test/llm/xml.test.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/config/global.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 12,
+      "size": 313,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 39
+      },
+      "crossStageLinks": 13,
+      "impactScore": 39,
+      "summary": "Support or shared utility code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/types/index.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/chat/chat-context.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/whisp.ts",
+        "packages/core/src/chat/chat-agent.ts",
+        "packages/core/src/chat/tools/agent-wrap-tool.ts",
+        "packages/core/src/chat/tools/deep-action.ts",
+        "packages/core/src/chat/tools/web-search.ts",
+        "packages/core/src/chat/tools/webpage-qa.ts",
+        "packages/core/src/index.ts",
+        "packages/core/src/prompt/agent.ts",
+        "packages/core/src/prompt/chat.ts",
+        "packages/core/src/prompt/plan.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/config/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 31,
+      "size": 674,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 39
+      },
+      "crossStageLinks": 12,
+      "impactScore": 39,
+      "summary": "Entry or startup logic. Type: entry",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/agent-llm.ts",
+        "packages/core/src/agent/base.ts",
+        "packages/core/src/agent/browser/browser-labels.ts",
+        "packages/core/src/agent/whisp.ts",
+        "packages/core/src/chat/tools/deep-action.ts",
+        "packages/core/src/chat/tools/webpage-qa.ts",
+        "packages/core/src/index.ts",
+        "packages/core/src/llm/react.ts",
+        "packages/core/src/llm/rlm.ts",
+        "packages/core/src/memory/index.ts",
+        "packages/core/src/memory/memory.ts",
+        "packages/core/src/prompt/agent.ts",
+        "packages/core/src/prompt/chat.ts",
+        "packages/core/src/prompt/plan.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 84,
+      "size": 1732,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 51
+      },
+      "crossStageLinks": 15,
+      "impactScore": 51,
+      "summary": "Entry or startup logic. Type: entry",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/config/index.ts",
+        "packages/core/src/common/log.ts",
+        "packages/core/src/agent/index.ts",
+        "packages/core/src/config/global.ts",
+        "packages/core/src/agent/plan.ts",
+        "packages/core/src/memory/memory.ts",
+        "packages/core/src/agent/chain.ts",
+        "packages/core/src/mcp/index.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/service/index.ts",
+        "packages/core/src/common/tree.ts",
+        "packages/core/src/prompt/prompt-template.ts",
+        "packages/core/src/agent/browser/utils.ts",
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/test/core/agents.ts",
+        "packages/core/test/core/dialogue.test.ts",
+        "packages/core/test/core/mcp.test.ts",
+        "packages/core/test/core/whisp.test.ts",
+        "packages/core/test/core/plan.test.ts",
+        "packages/core/test/core/tree.test.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/llm/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 3,
+      "size": 94,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 47
+      },
+      "crossStageLinks": 15,
+      "impactScore": 47,
+      "summary": "Entry or startup logic. Type: entry",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/llm/rlm.ts",
+        "packages/core/src/llm/react.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/agent-llm.ts",
+        "packages/core/src/agent/base.ts",
+        "packages/core/src/agent/plan.ts",
+        "packages/core/src/agent/replan.ts",
+        "packages/core/src/chat/chat-agent.ts",
+        "packages/core/src/chat/chat-llm.ts",
+        "packages/core/src/chat/tools/webpage-qa.ts",
+        "packages/core/src/index.ts",
+        "packages/core/src/memory/index.ts",
+        "packages/core/src/tools/human-interact.ts",
+        "packages/core/src/tools/task-result-check.ts",
+        "packages/core/src/tools/todo-list-manager.ts",
+        "packages/core/src/tools/watch-trigger.ts",
+        "packages/core/test/llm/llm.test.ts",
+        "packages/core/test/llm/openrouter.test.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/llm/react.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 522,
+      "size": 15059,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 20
+      },
+      "crossStageLinks": 6,
+      "impactScore": 20,
+      "summary": "Core business logic. Functions: callWithReAct, callLLM, convertAssistantContent",
+      "functions": [
+        "callWithReAct",
+        "callLLM",
+        "convertAssistantContent"
+      ],
+      "classes": [],
+      "exports": [
+        "convertAssistantContent"
+      ],
+      "imports": [
+        "packages/core/src/types/index.ts",
+        "packages/core/src/types/llm.types.ts",
+        "packages/core/src/config/index.ts",
+        "packages/core/src/common/log.ts",
+        "packages/core/src/llm/rlm.ts",
+        "packages/core/src/common/utils.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/base.ts",
+        "packages/core/src/llm/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/llm/rlm.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 389,
+      "size": 12228,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 18
+      },
+      "crossStageLinks": 5,
+      "impactScore": 18,
+      "summary": "Core business logic. Classes: RetryLanguageModel. Functions: result, constructor, setContext",
+      "functions": [
+        "result",
+        "constructor",
+        "setContext"
+      ],
+      "classes": [
+        "RetryLanguageModel"
+      ],
+      "exports": [
+        "RetryLanguageModel"
+      ],
+      "imports": [
+        "packages/core/src/common/log.ts",
+        "packages/core/src/config/index.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/types/llm.types.ts",
+        "packages/core/src/agent/agent-llm.ts",
+        "packages/core/src/agent/agent-context.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/llm/react.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/mcp/http.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 249,
+      "size": 6614,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 12
+      },
+      "crossStageLinks": 4,
+      "impactScore": 12,
+      "summary": "Core business logic. Classes: SimpleHttpMcpClient. Functions: constructor, handleError",
+      "functions": [
+        "constructor",
+        "handleError"
+      ],
+      "classes": [
+        "SimpleHttpMcpClient"
+      ],
+      "exports": [
+        "SimpleHttpMcpClient"
+      ],
+      "imports": [
+        "packages/core/src/common/log.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/mcp/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/mcp/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 5,
+      "size": 143,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 10
+      },
+      "crossStageLinks": 3,
+      "impactScore": 10,
+      "summary": "Entry or startup logic. Type: entry",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/mcp/sse.ts",
+        "packages/core/src/mcp/http.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/index.ts",
+        "packages/core/test/llm/mcp.test.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/mcp/sse.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 325,
+      "size": 8967,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 12
+      },
+      "crossStageLinks": 4,
+      "impactScore": 12,
+      "summary": "Core business logic. Classes: SimpleSseMcpClient. Functions: connectSse, parseChunk, constructor, onmessage",
+      "functions": [
+        "connectSse",
+        "parseChunk",
+        "constructor",
+        "onmessage",
+        "initialize",
+        "ping"
+      ],
+      "classes": [
+        "SimpleSseMcpClient"
+      ],
+      "exports": [
+        "SimpleSseMcpClient"
+      ],
+      "imports": [
+        "packages/core/src/common/log.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/mcp/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/memory/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 338,
+      "size": 10107,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 28
+      },
+      "crossStageLinks": 8,
+      "impactScore": 28,
+      "summary": "Entry or startup logic. Functions: removeDuplicateToolUse, compressAgentMessages, doCompressAgentMessages, compressLargeContextMessages",
+      "functions": [
+        "removeDuplicateToolUse",
+        "compressAgentMessages",
+        "doCompressAgentMessages",
+        "compressLargeContextMessages",
+        "handleLargeContextMessages"
+      ],
+      "classes": [],
+      "exports": [
+        "extractUsedTool",
+        "removeDuplicateToolUse",
+        "handleLargeContextMessages"
+      ],
+      "imports": [
+        "packages/core/src/config/index.ts",
+        "packages/core/src/types/index.ts",
+        "packages/core/src/common/log.ts",
+        "packages/core/src/memory/snapshot.ts",
+        "packages/core/src/agent/agent-llm.ts",
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/agent/agent-context.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/agent-llm.ts",
+        "packages/core/src/agent/base.ts",
+        "packages/core/src/tools/task-result-check.ts",
+        "packages/core/src/tools/todo-list-manager.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/memory/memory.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 354,
+      "size": 10784,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 14
+      },
+      "crossStageLinks": 4,
+      "impactScore": 14,
+      "summary": "Core business logic. Classes: WhispMemory. Functions: constructor, fixDiscontinuousMessages",
+      "functions": [
+        "constructor",
+        "fixDiscontinuousMessages"
+      ],
+      "classes": [
+        "WhispMemory"
+      ],
+      "exports": [
+        "WhispMemory"
+      ],
+      "imports": [
+        "packages/core/src/config/index.ts",
+        "packages/core/src/agent/agent-llm.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/chat/chat-agent.ts",
+        "packages/core/src/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/memory/snapshot.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 70,
+      "size": 2207,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 10
+      },
+      "crossStageLinks": 3,
+      "impactScore": 10,
+      "summary": "Core business logic. Classes: TaskSnapshotTool. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "TaskSnapshotTool"
+      ],
+      "exports": [
+        "TOOL_NAME",
+        "TaskSnapshotTool"
+      ],
+      "imports": [
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/common/xml.ts",
+        "packages/core/src/types/tools.types.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/memory/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/prompt/agent.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 163,
+      "size": 6029,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 26
+      },
+      "crossStageLinks": 6,
+      "impactScore": 26,
+      "summary": "Core business logic. Functions: getAgentSystemPrompt, buildPreTaskResult, getAgentUserPrompt",
+      "functions": [
+        "getAgentSystemPrompt",
+        "buildPreTaskResult",
+        "getAgentUserPrompt"
+      ],
+      "classes": [],
+      "exports": [
+        "getAgentSystemPrompt",
+        "getAgentUserPrompt"
+      ],
+      "imports": [
+        "packages/core/src/config/index.ts",
+        "packages/core/src/agent/index.ts",
+        "packages/core/src/config/global.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/common/xml.ts",
+        "packages/core/src/prompt/prompt-template.ts",
+        "packages/core/src/types/index.ts",
+        "packages/core/src/tools/foreach-task.ts",
+        "packages/core/src/tools/watch-trigger.ts",
+        "packages/core/src/tools/human-interact.ts",
+        "packages/core/src/tools/variable-storage.ts",
+        "packages/core/src/tools/task-node-status.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/base.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/prompt/chat.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 94,
+      "size": 5101,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 18
+      },
+      "crossStageLinks": 4,
+      "impactScore": 18,
+      "summary": "Core business logic. Functions: getChatSystemPrompt, getTabsInfo",
+      "functions": [
+        "getChatSystemPrompt",
+        "getTabsInfo"
+      ],
+      "classes": [],
+      "exports": [
+        "getChatSystemPrompt"
+      ],
+      "imports": [
+        "packages/core/src/config/index.ts",
+        "packages/core/src/config/global.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/prompt/prompt-template.ts",
+        "packages/core/src/types/index.ts",
+        "packages/core/src/chat/tools/webpage-qa.ts",
+        "packages/core/src/chat/tools/web-search.ts",
+        "packages/core/src/chat/tools/deep-action.ts",
+        "packages/core/src/chat/tools/variable-storage.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/chat/chat-agent.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/prompt/plan.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 329,
+      "size": 14572,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 18
+      },
+      "crossStageLinks": 5,
+      "impactScore": 18,
+      "summary": "Core business logic. Functions: getPlanSystemPrompt, getPlanUserPrompt, buildAgentsPrompt",
+      "functions": [
+        "getPlanSystemPrompt",
+        "getPlanUserPrompt",
+        "buildAgentsPrompt"
+      ],
+      "classes": [],
+      "exports": [
+        "getPlanUserPrompt"
+      ],
+      "imports": [
+        "packages/core/src/config/index.ts",
+        "packages/core/src/agent/index.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/config/global.ts",
+        "packages/core/src/types/index.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/prompt/prompt-template.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/plan.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/prompt/prompt-template.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 76,
+      "size": 1953,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 6
+      },
+      "crossStageLinks": 1,
+      "impactScore": 6,
+      "summary": "Core business logic. Classes: PromptTemplate. Functions: replaceVars",
+      "functions": [
+        "replaceVars"
+      ],
+      "classes": [
+        "PromptTemplate"
+      ],
+      "exports": [
+        "PromptTemplate"
+      ],
+      "imports": [],
+      "usedBy": [
+        "packages/core/src/chat/tools/webpage-qa.ts",
+        "packages/core/src/index.ts",
+        "packages/core/src/prompt/agent.ts",
+        "packages/core/src/prompt/chat.ts",
+        "packages/core/src/prompt/plan.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/service/browser-service.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 10,
+      "size": 288,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 9
+      },
+      "crossStageLinks": 3,
+      "impactScore": 9,
+      "summary": "Core business logic. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/service/index.ts",
+        "packages/core/src/types/config.types.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/service/chat-service.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 32,
+      "size": 809,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 9
+      },
+      "crossStageLinks": 3,
+      "impactScore": 9,
+      "summary": "Core business logic. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/service/index.ts",
+        "packages/core/src/types/config.types.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/service/exa-search.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 127,
+      "size": 3292,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 1,
+      "impactScore": 2,
+      "summary": "Core business logic. Classes: ExaSearchService",
+      "functions": [],
+      "classes": [
+        "ExaSearchService"
+      ],
+      "exports": [
+        "ExaSearchService"
+      ],
+      "imports": [],
+      "usedBy": [
+        "packages/core/src/service/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/service/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 6,
+      "size": 193,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 10
+      },
+      "crossStageLinks": 3,
+      "impactScore": 10,
+      "summary": "Entry or startup logic. Type: entry",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/service/chat-service.ts",
+        "packages/core/src/service/browser-service.ts",
+        "packages/core/src/service/exa-search.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/tools/foreach-task.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 74,
+      "size": 2282,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 11
+      },
+      "crossStageLinks": 3,
+      "impactScore": 11,
+      "summary": "Core business logic. Classes: ForeachTaskTool. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "ForeachTaskTool"
+      ],
+      "exports": [
+        "TOOL_NAME",
+        "ForeachTaskTool"
+      ],
+      "imports": [
+        "packages/core/src/common/xml.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/types/tools.types.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/prompt/agent.ts",
+        "packages/core/src/tools/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/tools/human-interact.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 185,
+      "size": 6028,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 17
+      },
+      "crossStageLinks": 5,
+      "impactScore": 17,
+      "summary": "Core business logic. Classes: HumanInteractTool. Functions: constructor, checkIsLogined",
+      "functions": [
+        "constructor",
+        "checkIsLogined"
+      ],
+      "classes": [
+        "HumanInteractTool"
+      ],
+      "exports": [
+        "TOOL_NAME",
+        "HumanInteractTool"
+      ],
+      "imports": [
+        "packages/core/src/types/index.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/types/tools.types.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/prompt/agent.ts",
+        "packages/core/src/tools/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/tools/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 41,
+      "size": 1258,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 28
+      },
+      "crossStageLinks": 9,
+      "impactScore": 28,
+      "summary": "Entry or startup logic. Classes: McpTool. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "McpTool"
+      ],
+      "exports": [
+        "McpTool"
+      ],
+      "imports": [
+        "packages/core/src/tools/wrapper.ts",
+        "packages/core/src/tools/foreach-task.ts",
+        "packages/core/src/tools/watch-trigger.ts",
+        "packages/core/src/tools/human-interact.ts",
+        "packages/core/src/tools/task-node-status.ts",
+        "packages/core/src/tools/variable-storage.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/types/tools.types.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/base.ts",
+        "packages/core/test/core/mcp.test.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/tools/task-node-status.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 79,
+      "size": 2462,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 11
+      },
+      "crossStageLinks": 3,
+      "impactScore": 11,
+      "summary": "Core business logic. Classes: TaskNodeStatusTool. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "TaskNodeStatusTool"
+      ],
+      "exports": [
+        "TOOL_NAME",
+        "TaskNodeStatusTool"
+      ],
+      "imports": [
+        "packages/core/src/common/xml.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/types/tools.types.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/prompt/agent.ts",
+        "packages/core/src/tools/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/tools/task-result-check.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 151,
+      "size": 4607,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 18
+      },
+      "crossStageLinks": 5,
+      "impactScore": 18,
+      "summary": "Core business logic. Classes: TaskResultCheckTool. Functions: doTaskResultCheck, constructor",
+      "functions": [
+        "doTaskResultCheck",
+        "constructor"
+      ],
+      "classes": [
+        "TaskResultCheckTool"
+      ],
+      "exports": [
+        "TOOL_NAME",
+        "TaskResultCheckTool"
+      ],
+      "imports": [
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/memory/index.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/agent/agent-llm.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/types/tools.types.ts",
+        "packages/core/src/common/log.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/base.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/tools/todo-list-manager.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 167,
+      "size": 5218,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 18
+      },
+      "crossStageLinks": 5,
+      "impactScore": 18,
+      "summary": "Core business logic. Classes: TodoListManagerTool. Functions: doTodoListManager, constructor",
+      "functions": [
+        "doTodoListManager",
+        "constructor"
+      ],
+      "classes": [
+        "TodoListManagerTool"
+      ],
+      "exports": [
+        "TOOL_NAME",
+        "TodoListManagerTool"
+      ],
+      "imports": [
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/memory/index.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/agent/agent-llm.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/types/tools.types.ts",
+        "packages/core/src/common/log.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/base.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/tools/variable-storage.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 90,
+      "size": 2709,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 6
+      },
+      "crossStageLinks": 2,
+      "impactScore": 6,
+      "summary": "Core business logic. Classes: VariableStorageTool. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "VariableStorageTool"
+      ],
+      "exports": [
+        "TOOL_NAME",
+        "VariableStorageTool"
+      ],
+      "imports": [
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/types/tools.types.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/prompt/agent.ts",
+        "packages/core/src/tools/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/tools/watch-trigger.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 283,
+      "size": 8247,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 23
+      },
+      "crossStageLinks": 7,
+      "impactScore": 23,
+      "summary": "Core business logic. Classes: WatchTriggerTool. Functions: result, constructor, MutationObserver",
+      "functions": [
+        "result",
+        "constructor",
+        "MutationObserver"
+      ],
+      "classes": [
+        "WatchTriggerTool"
+      ],
+      "exports": [
+        "TOOL_NAME",
+        "WatchTriggerTool"
+      ],
+      "imports": [
+        "packages/core/src/common/log.ts",
+        "packages/core/src/types/index.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/common/xml.ts",
+        "packages/core/src/types/tools.types.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/prompt/agent.ts",
+        "packages/core/src/tools/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/tools/wrapper.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 34,
+      "size": 886,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 13
+      },
+      "crossStageLinks": 4,
+      "impactScore": 13,
+      "summary": "Entry or startup logic. Classes: ToolWrapper. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "ToolWrapper"
+      ],
+      "exports": [
+        "ToolWrapper"
+      ],
+      "imports": [
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/types/tools.types.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/base.ts",
+        "packages/core/src/tools/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/types/agent.types.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 150,
+      "size": 3228,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 23
+      },
+      "crossStageLinks": 6,
+      "impactScore": 23,
+      "summary": "Support or shared utility code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/agent/index.ts",
+        "packages/core/src/types/mcp.types.ts",
+        "packages/core/src/agent/a2a.ts",
+        "packages/core/src/types/llm.types.ts",
+        "packages/core/src/agent/agent-context.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/chain.ts",
+        "packages/core/src/agent/whisp.ts",
+        "packages/core/src/agent/plan.ts",
+        "packages/core/src/common/tree.ts",
+        "packages/core/src/common/xml.ts",
+        "packages/core/src/types/chat.types.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/types/chat.types.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 145,
+      "size": 2970,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 3
+      },
+      "crossStageLinks": 0,
+      "impactScore": 3,
+      "summary": "Support or shared utility code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/types/tools.types.ts",
+        "packages/core/src/types/llm.types.ts",
+        "packages/core/src/types/agent.types.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/src/types/config.types.ts",
+      "fileType": "config",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 53,
+      "size": 1939,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 15
+      },
+      "crossStageLinks": 5,
+      "impactScore": 15,
+      "summary": "Support or shared utility code. Type: config",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/chat/chat-context.ts",
+        "packages/core/src/service/chat-service.ts",
+        "packages/core/src/service/browser-service.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/types/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/types/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 94,
+      "size": 2020,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 105
+      },
+      "crossStageLinks": 34,
+      "impactScore": 105,
+      "summary": "Entry or startup logic. Type: entry",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/types/tools.types.ts",
+        "packages/core/src/types/config.types.ts",
+        "packages/core/src/types/service.types.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/agent-context.ts",
+        "packages/core/src/agent/agent-llm.ts",
+        "packages/core/src/agent/base.ts",
+        "packages/core/src/agent/browser/browser-base.ts",
+        "packages/core/src/agent/browser/browser-labels.ts",
+        "packages/core/src/agent/browser/browser-screen.ts",
+        "packages/core/src/agent/replan.ts",
+        "packages/core/src/chat/chat-agent.ts",
+        "packages/core/src/chat/chat-context.ts",
+        "packages/core/src/chat/chat-llm.ts",
+        "packages/core/src/chat/tools/agent-wrap-tool.ts",
+        "packages/core/src/chat/tools/deep-action.ts",
+        "packages/core/src/chat/tools/variable-storage.ts",
+        "packages/core/src/chat/tools/web-search.ts",
+        "packages/core/src/chat/tools/webpage-qa.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/common/workflow.ts",
+        "packages/core/src/config/global.ts",
+        "packages/core/src/config/index.ts",
+        "packages/core/src/index.ts",
+        "packages/core/src/llm/react.ts",
+        "packages/core/src/mcp/http.ts",
+        "packages/core/src/mcp/sse.ts",
+        "packages/core/src/memory/index.ts",
+        "packages/core/src/memory/memory.ts",
+        "packages/core/src/prompt/agent.ts",
+        "packages/core/src/prompt/chat.ts",
+        "packages/core/src/prompt/plan.ts",
+        "packages/core/src/service/browser-service.ts",
+        "packages/core/src/service/chat-service.ts",
+        "packages/core/src/tools/human-interact.ts",
+        "packages/core/src/tools/watch-trigger.ts",
+        "packages/core/test/core/dialogue.test.ts",
+        "packages/core/test/llm/openrouter.test.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/types/llm.types.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 247,
+      "size": 5743,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 21
+      },
+      "crossStageLinks": 6,
+      "impactScore": 21,
+      "summary": "Support or shared utility code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/types/tools.types.ts",
+        "packages/core/src/agent/agent-context.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/chain.ts",
+        "packages/core/src/agent/plan.ts",
+        "packages/core/src/llm/react.ts",
+        "packages/core/src/llm/rlm.ts",
+        "packages/core/src/types/agent.types.ts",
+        "packages/core/src/types/chat.types.ts",
+        "packages/core/test/llm/llm.test.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/types/mcp.types.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 46,
+      "size": 1052,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 0,
+      "impactScore": 2,
+      "summary": "Support or shared utility code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/types/tools.types.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/types/agent.types.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/types/service.types.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 28,
+      "size": 512,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 1,
+      "impactScore": 2,
+      "summary": "Support or shared utility code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [],
+      "usedBy": [
+        "packages/core/src/types/index.ts"
+      ]
+    },
+    {
+      "path": "packages/core/src/types/tools.types.ts",
+      "fileType": "module",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 76,
+      "size": 1531,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 43
+      },
+      "crossStageLinks": 13,
+      "impactScore": 43,
+      "summary": "Support or shared utility code. Type: module",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/agent/agent-context.ts"
+      ],
+      "usedBy": [
+        "packages/core/src/agent/chain.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/memory/snapshot.ts",
+        "packages/core/src/tools/foreach-task.ts",
+        "packages/core/src/tools/human-interact.ts",
+        "packages/core/src/tools/index.ts",
+        "packages/core/src/tools/task-node-status.ts",
+        "packages/core/src/tools/task-result-check.ts",
+        "packages/core/src/tools/todo-list-manager.ts",
+        "packages/core/src/tools/variable-storage.ts",
+        "packages/core/src/tools/watch-trigger.ts",
+        "packages/core/src/tools/wrapper.ts",
+        "packages/core/src/types/chat.types.ts",
+        "packages/core/src/types/index.ts",
+        "packages/core/src/types/llm.types.ts",
+        "packages/core/src/types/mcp.types.ts"
+      ]
+    },
+    {
+      "path": "packages/core/test/core/agents.ts",
+      "fileType": "module",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 52,
+      "size": 1392,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 7
+      },
+      "crossStageLinks": 2,
+      "impactScore": 7,
+      "summary": "Core business logic. Classes: SimpleBrowserAgent, SimpleComputerAgent, SimpleFileAgent. Functions: constructor",
+      "functions": [
+        "constructor"
+      ],
+      "classes": [
+        "SimpleBrowserAgent",
+        "SimpleComputerAgent",
+        "SimpleFileAgent"
+      ],
+      "exports": [
+        "SimpleBrowserAgent",
+        "SimpleComputerAgent",
+        "SimpleFileAgent"
+      ],
+      "imports": [
+        "packages/core/src/index.ts",
+        "packages/core/src/agent/index.ts"
+      ],
+      "usedBy": [
+        "packages/core/test/core/dialogue.test.ts",
+        "packages/core/test/core/whisp.test.ts",
+        "packages/core/test/core/plan.test.ts"
+      ]
+    },
+    {
+      "path": "packages/core/test/core/dialogue.test.ts",
+      "fileType": "test",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 90,
+      "size": 2147,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 5
+      },
+      "crossStageLinks": 2,
+      "impactScore": 5,
+      "summary": "Core business logic. Functions: run",
+      "functions": [
+        "run"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/index.ts",
+        "packages/core/test/core/agents.ts",
+        "packages/core/src/types/index.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/test/core/mcp.test.ts",
+      "fileType": "test",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 116,
+      "size": 3067,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 4
+      },
+      "crossStageLinks": 2,
+      "impactScore": 4,
+      "summary": "Core business logic. Functions: runWithSse, runWithHttp",
+      "functions": [
+        "runWithSse",
+        "runWithHttp"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/index.ts",
+        "packages/core/src/tools/index.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/test/core/whisp.test.ts",
+      "fileType": "test",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 53,
+      "size": 1266,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 3
+      },
+      "crossStageLinks": 1,
+      "impactScore": 3,
+      "summary": "Core business logic. Functions: run",
+      "functions": [
+        "run"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/index.ts",
+        "packages/core/test/core/agents.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/test/core/plan.test.ts",
+      "fileType": "test",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 74,
+      "size": 1818,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 3
+      },
+      "crossStageLinks": 1,
+      "impactScore": 3,
+      "summary": "Core business logic. Functions: testPlaner",
+      "functions": [
+        "testPlaner"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/index.ts",
+        "packages/core/test/core/agents.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/test/core/tree.test.ts",
+      "fileType": "test",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 80,
+      "size": 4633,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 1,
+      "impactScore": 2,
+      "summary": "Core business logic. Functions: testAgentTree",
+      "functions": [
+        "testAgentTree"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/index.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/test/demo.test.ts",
+      "fileType": "test",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 13,
+      "size": 222,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 1,
+      "impactScore": 2,
+      "summary": "Core business logic. Functions: sum",
+      "functions": [
+        "sum"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/common/log.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/test/llm/claude.test.ts",
+      "fileType": "test",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 127,
+      "size": 3368,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 1
+      },
+      "crossStageLinks": 0,
+      "impactScore": 1,
+      "summary": "Core business logic. Functions: testClaudePrompt, testClaudeStream, testToolsPrompt",
+      "functions": [
+        "testClaudePrompt",
+        "testClaudeStream",
+        "testToolsPrompt"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/agent/agent-llm.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/test/llm/llm.test.ts",
+      "fileType": "test",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 332,
+      "size": 12349,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 9
+      },
+      "crossStageLinks": 3,
+      "impactScore": 9,
+      "summary": "Core business logic. Functions: testRetryGenerate, testOpenaiStream, testToolsPrompt, testImage",
+      "functions": [
+        "testRetryGenerate",
+        "testOpenaiStream",
+        "testToolsPrompt",
+        "testImage",
+        "testImageToolsPrompt"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/types/llm.types.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/test/llm/mcp.test.ts",
+      "fileType": "test",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 36,
+      "size": 953,
+      "collaboration": {
+        "status": "collaborative",
+        "impact": "bridge",
+        "summary": "Connects multiple parts of the code flow.",
+        "score": 9
+      },
+      "crossStageLinks": 3,
+      "impactScore": 9,
+      "summary": "Core business logic. Functions: testSseMCP",
+      "functions": [
+        "testSseMCP"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/common/log.ts",
+        "packages/core/src/common/utils.ts",
+        "packages/core/src/mcp/index.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/test/llm/openai.test.ts",
+      "fileType": "test",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 127,
+      "size": 3264,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 1
+      },
+      "crossStageLinks": 0,
+      "impactScore": 1,
+      "summary": "Core business logic. Functions: testOpenaiPrompt, testOpenaiStream, testToolsPrompt",
+      "functions": [
+        "testOpenaiPrompt",
+        "testOpenaiStream",
+        "testToolsPrompt"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/agent/agent-llm.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/test/llm/openrouter.test.ts",
+      "fileType": "test",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 139,
+      "size": 3535,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 5
+      },
+      "crossStageLinks": 2,
+      "impactScore": 5,
+      "summary": "Core business logic. Functions: testOpenrouter1, testOpenrouter2, testOpenrouter3",
+      "functions": [
+        "testOpenrouter1",
+        "testOpenrouter2",
+        "testOpenrouter3"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/types/index.ts",
+        "packages/core/src/llm/index.ts",
+        "packages/core/src/agent/agent-llm.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/test/llm/stream.test.ts",
+      "fileType": "test",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 43,
+      "size": 1016,
+      "collaboration": {
+        "status": "isolated",
+        "impact": "solo",
+        "summary": "No local collaboration links yet.",
+        "score": 0
+      },
+      "crossStageLinks": 0,
+      "impactScore": 0,
+      "summary": "Core business logic. Functions: createReadableStream, ReadableStream, pull, cancel",
+      "functions": [
+        "createReadableStream",
+        "ReadableStream",
+        "pull",
+        "cancel"
+      ],
+      "classes": [],
+      "exports": [],
+      "imports": [],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/test/llm/utils.test.ts",
+      "fileType": "test",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 28,
+      "size": 555,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 1
+      },
+      "crossStageLinks": 0,
+      "impactScore": 1,
+      "summary": "Support or shared utility code. Type: test",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/common/utils.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/core/test/llm/xml.test.ts",
+      "fileType": "test",
+      "stage": "core",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 67,
+      "size": 2243,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 1,
+      "impactScore": 2,
+      "summary": "Core business logic. Type: test",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/core/src/common/xml.ts"
+      ],
+      "usedBy": []
+    },
+    {
+      "path": "packages/extension/rollup.config.js",
+      "fileType": "config",
+      "stage": "helpers",
+      "lang": "js",
+      "ext": ".js",
+      "lines": 62,
+      "size": 1276,
+      "collaboration": {
+        "status": "isolated",
+        "impact": "solo",
+        "summary": "No local collaboration links yet.",
+        "score": 0
+      },
+      "crossStageLinks": 0,
+      "impactScore": 0,
+      "summary": "Support or shared utility code. Type: config",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [],
+      "usedBy": []
+    },
+    {
+      "path": "packages/extension/src/browser.ts",
+      "fileType": "module",
+      "stage": "main",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 457,
+      "size": 12017,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 1,
+      "impactScore": 2,
+      "summary": "Main orchestration code. Classes: BrowserAgent. Functions: get_click_point, listener",
+      "functions": [
+        "get_click_point",
+        "listener"
+      ],
+      "classes": [
+        "BrowserAgent"
+      ],
+      "exports": [
+        "BrowserAgent"
+      ],
+      "imports": [],
+      "usedBy": [
+        "packages/extension/src/index.ts"
+      ]
+    },
+    {
+      "path": "packages/extension/src/index.ts",
+      "fileType": "entry",
+      "stage": "start",
+      "lang": "js",
+      "ext": ".ts",
+      "lines": 2,
+      "size": 42,
+      "collaboration": {
+        "status": "connected",
+        "impact": "leaf",
+        "summary": "Part of the local code flow with a focused role.",
+        "score": 2
+      },
+      "crossStageLinks": 1,
+      "impactScore": 2,
+      "summary": "Entry or startup logic. Type: entry",
+      "functions": [],
+      "classes": [],
+      "exports": [],
+      "imports": [
+        "packages/extension/src/browser.ts"
+      ],
+      "usedBy": []
+    }
+  ]
+}

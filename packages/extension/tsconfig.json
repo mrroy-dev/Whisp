@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "strict": false,
+    "target": "ES2018",
+    "moduleResolution": "Bundler",
+    "module": "ES6",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "rootDir": "src",
+    "outDir": "./dist",
+    "noEmitOnError": true,
+    "typeRoots": ["node_modules/@types"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

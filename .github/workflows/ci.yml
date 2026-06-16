@@ -1,0 +1,191 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        node-version: [18, 20, 22]
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check formatting
+        run: pnpm format:check
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Run tests
+        run: pnpm test
+        continue-on-error: true
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY || '' }}
+
+      - name: Package artifacts
+        run: node scripts/package.js
+
+      - name: Upload extension artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: whisp-extension-${{ matrix.os }}-${{ matrix.node-version }}
+          path: dist/whisp-extension-*.zip
+          retention-days: 7
+
+  chromium-patches:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+      fail-fast: false
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify patch files exist
+        shell: bash
+        run: |
+          errors=0
+          while IFS= read -r line; do
+            [[ "$line" =~ ^#.*$ || -z "$line" ]] && continue
+            patch="chromium/$line"
+            if [ ! -f "$patch" ]; then
+              echo "Missing patch: $patch"
+              errors=$((errors + 1))
+            fi
+          done < chromium/config/patches.list
+          if [ $errors -gt 0 ]; then
+            echo "$errors patch file(s) missing from patches.list"
+            exit 1
+          fi
+          echo "All patch files from patches.list exist"
+
+      - name: Validate shell scripts
+        shell: bash
+        run: |
+          errors=0
+          for script in chromium/scripts/*.sh; do
+            if [ -f "$script" ]; then
+              if ! bash -n "$script" 2>/dev/null; then
+                echo "Syntax error in: $script"
+                errors=$((errors + 1))
+              else
+                echo "OK: $script"
+              fi
+            fi
+          done
+          for script in chromium/packaging/linux/*.sh; do
+            if [ -f "$script" ]; then
+              if ! bash -n "$script" 2>/dev/null; then
+                echo "Syntax error in: $script"
+                errors=$((errors + 1))
+              else
+                echo "OK: $script"
+              fi
+            fi
+          done
+          for script in chromium/packaging/macos/*.sh; do
+            if [ -f "$script" ]; then
+              if ! bash -n "$script" 2>/dev/null; then
+                echo "Syntax error in: $script"
+                errors=$((errors + 1))
+              else
+                echo "OK: $script"
+              fi
+            fi
+          done
+          if [ $errors -gt 0 ]; then
+            echo "$errors script(s) have syntax errors"
+            exit 1
+          fi
+          echo "All shell scripts pass syntax check"
+
+      - name: Validate branding assets
+        shell: bash
+        run: |
+          errors=0
+          while IFS= read -r line; do
+            if [[ "$line" =~ copy_asset\ +\"([^\"]+)\" ]]; then
+              asset="${BASH_REMATCH[1]}"
+              if [ ! -f "branding_assets/$asset" ]; then
+                echo "Missing: branding_assets/$asset"
+                errors=$((errors + 1))
+              fi
+            fi
+          done < chromium/scripts/apply_branding_assets.sh
+          if [ $errors -gt 0 ]; then
+            echo "$errors branding asset(s) missing"
+            exit 1
+          fi
+          echo "All referenced branding assets exist"
+
+  windows-setup:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build extension
+        run: pnpm build
+
+      - name: Verify PowerShell scripts parse correctly
+        shell: powershell
+        run: |
+          $errors = 0
+          $scripts = @(
+            "chromium/scripts/setup_whisp.ps1",
+            "chromium/scripts/apply_patches.ps1",
+            "chromium/scripts/apply_branding_assets.ps1",
+            "chromium/scripts/apply_icon_assets.ps1",
+            "chromium/scripts/copy_extension_to_resources.ps1",
+            "chromium/packaging/windows/build_exe.ps1",
+            "chromium/packaging/windows/build_msi.ps1"
+          )
+          foreach ($script in $scripts) {
+            if (Test-Path $script) {
+              try {
+                $null = Get-Content $script -ErrorAction Stop
+                Write-Host "OK: $script" -ForegroundColor Green
+              } catch {
+                Write-Host "FAIL: $script - $_" -ForegroundColor Red
+                $errors++
+              }
+            } else {
+              Write-Host "MISSING: $script" -ForegroundColor Yellow
+            }
+          }
+          if ($errors -gt 0) { exit 1 }

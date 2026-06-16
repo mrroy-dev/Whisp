@@ -1,0 +1,53 @@
+{
+  "name": "@whisp-ai/extension",
+  "version": "1.0.0",
+  "description": "Whisp extension",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist/",
+    "LICENSE",
+    "README.md",
+    "package.json"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.esm.js",
+      "require": "./dist/index.cjs",
+      "default": "./dist/index.esm.js"
+    }
+  },
+  "scripts": {
+    "build": "rollup -c"
+  },
+  "author": "WhispAI",
+  "license": "MIT",
+  "keywords": [
+    "whisp",
+    "whisp-ai"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WhispAI/whisp.git"
+  },
+  "dependencies": {
+    "@whisp-ai/core": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/chrome": "0.0.158",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "rollup": "^4.40.0",
+    "rollup-plugin-copy": "^3.5.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.8.3"
+  }
+}

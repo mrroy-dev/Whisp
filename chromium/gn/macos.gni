@@ -1,0 +1,26 @@
+# macOS-specific GN args for Whisp release build
+# Usage: gn args out/whisp --args="import(\"//path/to/whisp/chromium/gn/macos.gni\")"
+
+import("//path/to/whisp/chromium/gn/whisp.gni")
+
+# macOS-specific
+enable_stripping = true
+enable_dsyms = false
+use_system_xcode = true
+mac_sdk_min = "13.0"
+
+# Universal binary (Apple Silicon + Intel)
+# Set to false for faster builds during development
+enable_universal_binary = true
+
+# Code signing (set these for distribution)
+# chrome_mac_signing = true
+# chrome_mac_signing_identifier = "Developer ID Application: Your Name (TEAMID)"
+# chrome_mac_bundle_id = "ai.whisp.browser"
+
+# Build targets:
+#   autoninja -C out/whisp chrome                    → Whisp.app bundle
+#   autoninja -C out/whisp chrome/installer/mac       → DMG package
+#
+# The .app bundle will be at out/whisp/Whisp.app
+# For DMG creation, run: chromium/packaging/macos/build_dmg.sh out/whisp
