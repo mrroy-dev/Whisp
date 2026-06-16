@@ -1,19 +1,25 @@
 # Linux-specific GN args for Whisp release build
-# Usage: gn args out/whisp --args="import(\"//path/to/whisp/chromium/gn/whisp.gni\")"
-# Or append the lines below to your args.gn
-
-import("//path/to/whisp/chromium/gn/whisp.gni")
-
-# Linux packaging
-enable_linux_installer = true
-linux_package_type = "both"   # "deb", "rpm", or "both"
-linux_sandbox_path = "/usr/lib/chromium-browser/chrome-sandbox"
-
-# Build targets:
-#   autoninja -C out/whisp chrome                    → binary + chrome_sandbox
-#   autoninja -C out/whisp linux_package_deb          → .deb package
-#   autoninja -C out/whisp linux_package_rpm          → .rpm package
-#   autoninja -C out/whisp linux_package              → both deb + rpm
 #
-# For AppImage, after building chrome binary:
-#   chromium/packaging/linux/build_appimage.sh
+# Usage:
+#   cd ../chromium/src
+#   gn args out/release < ../../whisp/chromium/gn/linux.gni
+#
+# Then build:
+#   autoninja -C out/release chrome                    # binary + chrome_sandbox
+#   autoninja -C out/release linux_package_deb          # .deb package
+#   autoninja -C out/release linux_package_rpm          # .rpm package
+#   autoninja -C out/release linux_package              # both deb + rpm
+#
+# For AppImage (post-build):
+#   bash ../../whisp/chromium/packaging/linux/build_appimage.sh out/release
+
+is_debug = false
+is_component_build = false
+symbol_level = 0
+blink_symbol_level = 0
+enable_nacl = false
+use_goma = false
+use_jumbo_build = true
+treat_warnings_as_errors = false
+is_chrome_branded = false
+enable_linux_installer = true

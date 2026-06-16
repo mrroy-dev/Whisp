@@ -15,6 +15,9 @@
     "format": "prettier --write . --ignore-unknown",
     "format:check": "prettier --check . --ignore-unknown",
     "prepare": "husky",
+    "build:linux": "node scripts/build_platform.js linux",
+    "build:win": "node scripts/build_platform.js win32",
+    "build:mac": "node scripts/build_platform.js darwin",
     "build:all": "node scripts/build.js",
     "package": "node scripts/package.js",
     "build:chromium": "node scripts/build_chromium.js",
@@ -32,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/WhispAI/whisp.git"
+    "url": "git+https://github.com/mrroy-dev/Whisp.git"
   },
   "devDependencies": {
     "husky": "9.1.7",

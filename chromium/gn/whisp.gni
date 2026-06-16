@@ -1,6 +1,10 @@
-# Whisp GN build configuration
-# Include this in your GN args via `gn args out/whisp < chromium/gn/whisp.gni`
-# or paste the contents into `gn args out/whisp`
+# Whisp common GN build configuration (all platforms)
+#
+# Usage:
+#   cd ../chromium/src
+#   gn args out/release < ../../whisp/chromium/gn/whisp.gni
+#
+# Or paste the content below into `gn args out/release`.
 
 # --- Common settings (all platforms) ---
 is_debug = false
@@ -14,9 +18,6 @@ treat_warnings_as_errors = false
 
 # --- Branding ---
 is_chrome_branded = false
-chrome_product_full_name = "Whisp"
-chrome_product_short_name = "Whisp"
-chrome_product_version = "1.0.0.0"
 
 # --- Features ---
 enable_remoting = false

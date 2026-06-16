@@ -1,23 +1,21 @@
 # Windows-specific GN args for Whisp release build
-# Usage: gn args out/whisp --args="import(\"//path/to/whisp/chromium/gn/windows.gni\")"
-
-import("//path/to/whisp/chromium/gn/whisp.gni")
-
-# Windows installer support
-enable_hidpi = true
-enable_media_foundation_widevine_cdm = false
-win_linker_timing = false
-
-# Build with Visual Studio 2022
-visual_studio_version = "2022"
-
-# Output name
-chrome_product_name = "Whisp"
-
-# Build targets:
-#   autoninja -C out/whisp chrome                    → chrome.exe
-#   autoninja -C out/whisp mini_installer             → mini_installer.exe (NSIS-based)
-#   autoninja -C out/whisp chrome_msi                 → chrome.msi (WiX-based)
 #
-# The mini_installer will be at out/whisp/mini_installer.exe
-# The MSI will be at out/whisp/chrome.msi
+# Usage:
+#   cd ..\chromium\src
+#   gn args out\release < ..\..\whisp\chromium\gn\windows.gni
+#
+# Then build:
+#   autoninja -C out\release chrome                    # chrome.exe
+#   autoninja -C out\release mini_installer             # NSIS EXE installer
+#   autoninja -C out\release chrome_msi                 # WiX MSI installer
+
+is_debug = false
+is_component_build = false
+symbol_level = 0
+blink_symbol_level = 0
+enable_nacl = false
+use_goma = false
+use_jumbo_build = true
+treat_warnings_as_errors = false
+is_chrome_branded = false
+enable_hidpi = true
