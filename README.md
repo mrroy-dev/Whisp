@@ -21,7 +21,7 @@ Whisp is an AI-powered browser — a customized Chromium build with an integrate
 git clone https://github.com/WhispAI/whisp.git
 cd whisp
 pnpm install
-pnpm build          # builds core + extension + chromium-extension
+pnpm build          # builds core + extension + chromium-extension....
 ```
 
 ### Run Tests
