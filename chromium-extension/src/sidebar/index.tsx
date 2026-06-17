@@ -11,7 +11,7 @@ import { useSessionManagement } from "./hooks/useSessionManagement";
 import { ThemeProvider } from "./providers/ThemeProvider";
 import { message as AntdMessage, Button, Space } from "antd";
 import { HistoryOutlined, SettingOutlined } from "@ant-design/icons";
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback, useMemo } from "react";
 
 const AppRun = () => {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -19,6 +19,8 @@ const AppRun = () => {
   const [sending, setSending] = useState(false);
   const [currentMessageId, setCurrentMessageId] = useState<string | null>(null);
   const [uploadedFiles, setUploadedFiles] = useState<UploadedFile[]>([]);
+  const [modelName, setModelName] = useState("");
+  const [usage, setUsage] = useState({ promptTokens: 0, completionTokens: 0 });
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
   const [autoScroll, setAutoScroll] = useState(true);
@@ -107,6 +109,15 @@ const AppRun = () => {
     };
   }, [messages, autoScroll]);
 
+  // Load LLM config from storage
+  useEffect(() => {
+    chrome.storage.sync.get("llmConfig", (result) => {
+      if (result.llmConfig?.model) {
+        setModelName(result.llmConfig.model);
+      }
+    });
+  }, []);
+
   // Listen to background messages
   useEffect(() => {
     const handleMessage = (
@@ -121,6 +132,14 @@ const AppRun = () => {
       } else if (message.type === "chat_result") {
         const messageId = message.data.messageId;
         const error = message.data.error;
+        const resultUsage = message.data.result?.usage;
+        if (resultUsage) {
+          setUsage((prev) => ({
+            promptTokens: prev.promptTokens + (resultUsage.promptTokens || 0),
+            completionTokens:
+              prev.completionTokens + (resultUsage.completionTokens || 0)
+          }));
+        }
         if (error && messageId === currentMessageId) {
           setCurrentMessageId(null);
           const userMessage = messages.find((m) => m.id === messageId);
@@ -285,13 +304,17 @@ const AppRun = () => {
     [selectSession]
   );
 
-  // Listen for storage changes (e.g., when LLM config is updated)
+  // Listen for storage changes
   useEffect(() => {
     const handleStorageChange = async (
       changes: { [key: string]: chrome.storage.StorageChange },
       areaName: string
     ) => {
       if (areaName === "sync" && changes["llmConfig"]) {
+        const newConfig = changes["llmConfig"].newValue;
+        if (newConfig?.model) {
+          setModelName(newConfig.model);
+        }
         handleNewSession();
       }
     };
@@ -301,35 +324,66 @@ const AppRun = () => {
     };
   }, [handleNewSession]);
 
+  const handleRegenerate = useCallback(() => {
+    const lastAiMessage = [...messages]
+      .reverse()
+      .find((m) => m.role === "assistant");
+    if (!lastAiMessage) return;
+    const lastUserMsg = [...messages]
+      .reverse()
+      .find((m) => m.role === "user");
+    if (lastUserMsg) {
+      setInputValue(lastUserMsg.content);
+      setMessages((prev) => prev.filter((m) => m.id !== lastAiMessage.id));
+    }
+  }, [messages]);
+
+  const suggestedActions = useMemo(
+    () => [
+      { label: "Summarize page", icon: "📄", action: "Summarize the current page" },
+      { label: "Draft an email", icon: "✉️", action: "Help me draft an email about" },
+      { label: "Explain code", icon: "💻", action: "Explain the following code" },
+      { label: "Research topic", icon: "🔍", action: "Research and summarize information about" }
+    ],
+    []
+  );
+
+  const hasTokenUsage = usage.promptTokens > 0 || usage.completionTokens > 0;
+
   return (
-    <div className="flex flex-col h-screen bg-white">
-      {/* Header with Session and Settings Buttons */}
-      <div className="flex items-center justify-end px-1 py-1 bg-gray-100">
-        <Space size={4}>
-          <Button
-            type="text"
-            icon={<HistoryOutlined />}
-            onClick={handleShowSessionHistory}
-            className="text-gray-500 hover:text-gray-700"
-          />
-          <Button
-            type="text"
-            icon={<SettingOutlined />}
-            onClick={() => chrome.runtime.openOptionsPage()}
-            className="text-gray-500 hover:text-gray-700"
-          />
+    <div className="flex flex-col h-screen" style={{ backgroundColor: "var(--chrome-bg-primary)" }}>
+      {/* Header */}
+      <div
+        className="flex items-center justify-between px-3 py-2"
+        style={{
+          borderBottom: "1px solid var(--chrome-input-border)",
+          backgroundColor: "var(--chrome-bg-secondary)"
+        }}
+      >
+        <div className="flex items-center gap-2 min-w-0">
+          <span className="font-semibold text-sm">Whisp</span>
+          {modelName && (
+            <span className="model-badge" title={modelName}>
+              {modelName}
+            </span>
+          )}
+        </div>
+        <Space size={2}>
+          <Button type="text" size="small" icon={<HistoryOutlined />} onClick={handleShowSessionHistory} />
+          <Button type="text" size="small" icon={<SettingOutlined />} onClick={() => chrome.runtime.openOptionsPage()} />
         </Space>
       </div>
 
-      {/* Message area */}
+      {/* Messages */}
       <div
         ref={messagesContainerRef}
-        className="flex-1 overflow-y-auto overflow-x-hidden p-4 bg-gray-100 relative"
+        className="flex-1 overflow-y-auto overflow-x-hidden px-3 py-3 relative"
+        style={{ backgroundColor: "var(--chrome-bg-primary)" }}
       >
         {messages.length === 0 ? (
-          <div className="flex items-center justify-center h-full">
+          <div className="flex flex-col items-center justify-center h-full px-6">
             <div
-              className="w-48 h-48"
+              className="w-28 h-28 mb-5"
               style={{
                 maskImage: "url(/icon_light.png)",
                 WebkitMaskImage: "url(/icon_light.png)",
@@ -340,23 +394,53 @@ const AppRun = () => {
                 maskPosition: "center",
                 WebkitMaskPosition: "center",
                 backgroundColor: "var(--chrome-icon-color)",
-                opacity: 0.15
+                opacity: 0.1
               }}
             />
+            <p className="text-sm mb-4 text-center" style={{ opacity: 0.4 }}>
+              What can I help with?
+            </p>
+            <div className="flex flex-wrap justify-center gap-2 max-w-xs">
+              {suggestedActions.map((action) => (
+                <button
+                  key={action.label}
+                  className="suggestion-chip"
+                  onClick={() => setInputValue(action.action)}
+                >
+                  <span>{action.icon}</span>
+                  <span>{action.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
         ) : (
-          messages.map((message) => (
-            <MessageItem
-              key={message.id}
-              message={message}
-              onUpdateMessage={forceUpdate}
-            />
+          messages.map((message, idx) => (
+            <div key={message.id} className="message-enter">
+              <MessageItem
+                message={message}
+                onUpdateMessage={forceUpdate}
+                onRegenerate={
+                  message.role === "assistant" &&
+                  idx === messages.length - 1 &&
+                  !currentMessageId
+                    ? handleRegenerate
+                    : undefined
+                }
+              />
+            </div>
           ))
         )}
         <div ref={messagesEndRef} />
       </div>
 
-      {/* Input area */}
+      {/* Token usage footer */}
+      {hasTokenUsage && (
+        <div className="usage-footer">
+          {usage.promptTokens} prompt &middot; {usage.completionTokens} completion
+        </div>
+      )}
+
+      {/* Input */}
       <ChatInput
         inputValue={inputValue}
         onInputChange={setInputValue}
@@ -370,7 +454,7 @@ const AppRun = () => {
         onNewSession={handleNewSession}
       />
 
-      {/* Session History Modal */}
+      {/* Session History */}
       <SessionHistory
         visible={showSessionHistory}
         onClose={() => setShowSessionHistory(false)}

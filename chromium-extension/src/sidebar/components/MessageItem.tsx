@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useCallback } from "react";
 import { TextItem } from "./TextItem";
 import type { ChatMessage } from "../types";
 import { ThinkingItem } from "./ThinkingItem";
@@ -6,15 +6,18 @@ import { ToolCallItem } from "./ToolCallItem";
 import { WorkflowCard } from "./WorkflowCard";
 import { MarkdownRenderer } from "../MarkdownRenderer";
 import { AgentExecutionCard } from "./AgentExecutionCard";
-import { Typography, Image, Spin } from "antd";
+import { Typography, Image, Spin, Tooltip } from "antd";
 import {
   RobotOutlined,
   UserOutlined,
   FileOutlined,
-  ExclamationCircleOutlined
+  ExclamationCircleOutlined,
+  CopyOutlined,
+  ReloadOutlined
 } from "@ant-design/icons";
+import { message as AntdMessage } from "antd";
 
-const { Text, Paragraph } = Typography;
+const { Text } = Typography;
 
 const decodeHtmlEntities = (text: string) => {
   if (!text) return "";
@@ -97,11 +100,13 @@ const renderContentWithWebRefs = (
 interface MessageItemProps {
   message: ChatMessage;
   onUpdateMessage?: (status?: "stop") => void;
+  onRegenerate?: () => void;
 }
 
 export const MessageItem: React.FC<MessageItemProps> = ({
   message,
-  onUpdateMessage
+  onUpdateMessage,
+  onRegenerate
 }) => {
   const handleWebRefClick = (url: string) => {
     if (!url) return;
@@ -117,28 +122,47 @@ export const MessageItem: React.FC<MessageItemProps> = ({
     [message.content]
   );
 
+  const getMessageText = useCallback(() => {
+    if (message.contentItems && message.contentItems.length > 0) {
+      return message.contentItems
+        .filter((item) => item.type === "text")
+        .map((item) => item.text)
+        .join("\n");
+    }
+    return message.content || "";
+  }, [message]);
+
+  const handleCopy = useCallback(async () => {
+    const text = getMessageText();
+    if (!text) return;
+    try {
+      await navigator.clipboard.writeText(text);
+      AntdMessage.success("Copied");
+    } catch {
+      AntdMessage.error("Copy failed");
+    }
+  }, [getMessageText]);
+
   if (message.role === "user") {
     return (
-      <div className="flex gap-3 mb-4">
-        {/* User Icon */}
-        <div className="flex-shrink-0">
-          <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
-            <UserOutlined className="text-gray-600" />
+      <div className="flex justify-end mb-3 message-actions-group">
+        <div className="max-w-[85%]">
+          <div className="user-bubble">
+            {message.content && (
+              <div style={{ color: "var(--user-bubble-text)" }}>
+                {userContent}
+              </div>
+            )}
+            {message.status == "waiting" && (
+              <span className="inline-flex items-center gap-1 ml-1" style={{ color: "var(--user-bubble-text)" }}>
+                <span className="typing-dot">.</span>
+                <span className="typing-dot">.</span>
+                <span className="typing-dot">.</span>
+              </span>
+            )}
           </div>
-        </div>
-
-        {/* User Content */}
-        <div className="flex-1 min-w-0">
-          {message.content && (
-            <div className="text-gray-900 leading-relaxed text-sm">
-              {userContent}
-            </div>
-          )}
-          {message.status == "waiting" && (
-            <Spin size="small" className="mt-1" />
-          )}
           {message.uploadedFiles && message.uploadedFiles.length > 0 && (
-            <div className="mt-2 space-y-2">
+            <div className="mt-1.5 flex flex-wrap gap-1.5 justify-end">
               {message.uploadedFiles.map((file) => {
                 const isImage = file.mimeType.startsWith("image/");
                 return (
@@ -151,13 +175,20 @@ export const MessageItem: React.FC<MessageItemProps> = ({
                             : `data:${file.mimeType};base64,${file.base64Data}`
                         }
                         alt={file.filename}
-                        className="max-w-full max-h-[200px] rounded border border-gray-200"
+                        className="max-w-[180px] max-h-[180px] rounded-lg"
+                        style={{ border: "1px solid var(--chrome-input-border)" }}
                         preview={false}
                       />
                     ) : (
-                      <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded border border-gray-200">
-                        <FileOutlined className="text-gray-500" />
-                        <Text className="text-gray-700 text-sm">
+                      <div
+                        className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg"
+                        style={{
+                          backgroundColor: "var(--chrome-input-background)",
+                          border: "1px solid var(--chrome-input-border)"
+                        }}
+                      >
+                        <FileOutlined style={{ opacity: 0.5 }} />
+                        <Text className="text-xs" style={{ opacity: 0.8 }}>
                           {file.filename}
                         </Text>
                       </div>
@@ -172,99 +203,122 @@ export const MessageItem: React.FC<MessageItemProps> = ({
     );
   }
 
-  // AI message
   return (
-    <div className="flex gap-3 mb-4">
-      {/* AI Icon */}
-      <div className="flex-shrink-0">
-        <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
-          <RobotOutlined className="text-gray-600" />
+    <div className="flex items-start gap-2.5 mb-3 message-actions-group">
+      <div className="flex-shrink-0 mt-1">
+        <div
+          className="w-7 h-7 rounded-full flex items-center justify-center"
+          style={{ backgroundColor: "var(--chrome-input-background)" }}
+        >
+          <RobotOutlined style={{ fontSize: 14, opacity: 0.5 }} />
         </div>
       </div>
 
-      {/* AI Content */}
       <div className="flex-1 min-w-0">
-        {message.contentItems && message.contentItems.length > 0 ? (
-          message.contentItems.map((item, index) => {
-            if (item.type === "thinking" && item.text != "[REDACTED]") {
-              return (
-                <div key={`chat-thinking-${item.streamId}-${index}`}>
-                  <ThinkingItem
-                    streamId={item.streamId}
-                    text={item.text}
-                    streamDone={item.streamDone}
+        <div className="ai-bubble">
+          {message.contentItems && message.contentItems.length > 0 ? (
+            message.contentItems.map((item, index) => {
+              if (item.type === "thinking" && item.text != "[REDACTED]") {
+                return (
+                  <div key={`chat-thinking-${item.streamId}-${index}`}>
+                    <ThinkingItem
+                      streamId={item.streamId}
+                      text={item.text}
+                      streamDone={item.streamDone}
+                    />
+                  </div>
+                );
+              } else if (item.type === "text") {
+                return (
+                  <div key={`chat-text-${item.streamId}-${index}`}>
+                    <TextItem
+                      streamId={item.streamId}
+                      text={item.text}
+                      streamDone={item.streamDone}
+                    />
+                  </div>
+                );
+              } else if (item.type === "tool") {
+                return (
+                  <div
+                    key={`chat-tool-${item.toolCallId}-${index}`}
+                    className="mb-2"
+                  >
+                    <ToolCallItem item={item} />
+                  </div>
+                );
+              } else if (item.type === "file") {
+                return (
+                  <Image
+                    key={`chat-file-${index}`}
+                    src={
+                      item.data.startsWith("http")
+                        ? item.data
+                        : `data:${item.mimeType};base64,${item.data}`
+                    }
+                    alt="Message file"
+                    className="max-w-full my-1.5 rounded-lg"
+                    style={{ border: "1px solid var(--chrome-input-border)" }}
                   />
-                </div>
-              );
-            } else if (item.type === "text") {
-              return (
-                <div key={`chat-text-${item.streamId}-${index}`}>
-                  <TextItem
-                    streamId={item.streamId}
-                    text={item.text}
-                    streamDone={item.streamDone}
-                  />
-                </div>
-              );
-            } else if (item.type === "tool") {
-              return (
-                <div
-                  key={`chat-tool-${item.toolCallId}-${index}`}
-                  className="mb-2"
-                >
-                  <ToolCallItem item={item} />
-                </div>
-              );
-            } else if (item.type === "file") {
-              return (
-                <Image
-                  key={`chat-file-${index}`}
-                  src={
-                    item.data.startsWith("http")
-                      ? item.data
-                      : `data:${item.mimeType};base64,${item.data}`
-                  }
-                  alt="Message file"
-                  className="max-w-full my-2 rounded border border-gray-200"
+                );
+              } else if (
+                item.type === "task" &&
+                (item.task.workflow || item.task.agents?.length > 0)
+              ) {
+                return (
+                  <div key={`chat-task-${item.taskId}-${index}`} className="mb-2">
+                    {item.task.workflow ? (
+                      <WorkflowCard
+                        task={item.task}
+                        onUpdateTask={onUpdateMessage}
+                      />
+                    ) : (
+                      <AgentExecutionCard
+                        agentNode={item.task.agents[0].agentNode}
+                        task={item.task}
+                      />
+                    )}
+                  </div>
+                );
+              }
+              return null;
+            })
+          ) : message.content ? (
+            <div className="mb-0.5">
+              <MarkdownRenderer content={message.content} />
+            </div>
+          ) : message.status == "waiting" ? (
+            <span className="inline-flex items-center gap-1">
+              <span className="typing-dot">.</span>
+              <span className="typing-dot">.</span>
+              <span className="typing-dot">.</span>
+            </span>
+          ) : (
+            <></>
+          )}
+          {message.error && (
+            <div className="mt-1.5 flex items-start gap-1.5 text-sm" style={{ color: "#ef4444" }}>
+              <ExclamationCircleOutlined className="mt-0.5" />
+              <span>{String(message.error)}</span>
+            </div>
+          )}
+        </div>
+        {message.status !== "waiting" && !message.error && (
+          <div className="flex items-center gap-1.5 mt-1 ml-1 message-actions">
+            <Tooltip title="Copy">
+              <CopyOutlined
+                className="message-action-btn"
+                onClick={handleCopy}
+              />
+            </Tooltip>
+            {onRegenerate && (
+              <Tooltip title="Regenerate">
+                <ReloadOutlined
+                  className="message-action-btn"
+                  onClick={onRegenerate}
                 />
-              );
-            } else if (
-              item.type === "task" &&
-              (item.task.workflow || item.task.agents?.length > 0)
-            ) {
-              return (
-                <div key={`chat-task-${item.taskId}-${index}`} className="mb-2">
-                  {item.task.workflow ? (
-                    // Multi-agent workflow
-                    <WorkflowCard
-                      task={item.task}
-                      onUpdateTask={onUpdateMessage}
-                    />
-                  ) : (
-                    // Single agent tool
-                    <AgentExecutionCard
-                      agentNode={item.task.agents[0].agentNode}
-                      task={item.task}
-                    />
-                  )}
-                </div>
-              );
-            }
-            return null;
-          })
-        ) : message.content ? (
-          <div className="mb-2 text-gray-900 leading-relaxed text-sm">
-            <MarkdownRenderer content={message.content} />
-          </div>
-        ) : message.status == "waiting" ? (
-          <Spin size="small" />
-        ) : (
-          <></>
-        )}
-        {message.error && (
-          <div className="mt-2 flex items-start gap-2 text-sm text-red-600">
-            <ExclamationCircleOutlined className="mt-0.5" />
-            <span>{String(message.error)}</span>
+              </Tooltip>
+            )}
           </div>
         )}
       </div>

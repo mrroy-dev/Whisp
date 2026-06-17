@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* CSS variables for Chrome theme colors - Light mode defaults */
 :root {
   --chrome-bg-primary: #ffffff;
   --chrome-bg-secondary: #f5f5f5;
@@ -10,9 +9,12 @@
   --chrome-input-border: #e0e0e0;
   --scrollbar-thumb: rgba(0, 0, 0, 0.35);
   --scrollbar-thumb-hover: rgba(0, 0, 0, 0.6);
+  --user-bubble: #e8f0fe;
+  --user-bubble-text: #1a1a1a;
+  --ai-bubble: #f0f0f0;
+  --ai-bubble-text: #1a1a1a;
 }
 
-/* Dark mode defaults - before theme colors load */
 @media (prefers-color-scheme: dark) {
   :root {
     --chrome-bg-primary: #1f1f1f;
@@ -20,9 +22,13 @@
     --chrome-text-primary: #ffffff;
     --chrome-icon-color: #ffffff;
     --chrome-input-background: #2a2b2e;
-    --chrome-input-border: #2a2b2e;
+    --chrome-input-border: #3a3b3e;
     --scrollbar-thumb: rgba(255, 255, 255, 0.35);
     --scrollbar-thumb-hover: rgba(255, 255, 255, 0.6);
+    --user-bubble: #2b3a4a;
+    --user-bubble-text: #e0e0e0;
+    --ai-bubble: #2a2b2e;
+    --ai-bubble-text: #e0e0e0;
   }
 }
 
@@ -30,7 +36,6 @@
    THEME UTILITY CLASSES
    ============================================ */
 
-/* Background Color Utilities */
 .bg-theme-primary {
   background-color: var(--chrome-bg-primary) !important;
 }
@@ -47,7 +52,6 @@
   background-color: var(--chrome-input-background) !important;
 }
 
-/* Text/Color Utilities */
 .text-theme-primary {
   color: var(--chrome-text-primary) !important;
 }
@@ -64,7 +68,6 @@
   color: var(--chrome-icon-color) !important;
 }
 
-/* Fill Utilities (for SVG icons) */
 .fill-theme-primary {
   fill: var(--chrome-bg-primary) !important;
 }
@@ -85,7 +88,6 @@
   fill: var(--chrome-icon-color) !important;
 }
 
-/* Fill utilities for SVG children */
 .fill-theme-icon svg,
 .fill-theme-icon svg * {
   fill: var(--chrome-icon-color) !important;
@@ -96,7 +98,6 @@
   fill: var(--chrome-text-primary) !important;
 }
 
-/* Border Color Utilities */
 .border-theme-primary {
   border-color: var(--chrome-bg-primary) !important;
 }
@@ -113,7 +114,6 @@
   border-color: var(--chrome-input-border) !important;
 }
 
-/* Checkbox Utilities */
 .checkbox-theme .ant-checkbox-inner {
   background-color: var(--chrome-bg-primary) !important;
   border-color: var(--chrome-text-primary) !important;
@@ -128,7 +128,6 @@
   border-color: var(--chrome-text-primary) !important;
 }
 
-/* Select/Input Focus and Hover Utilities */
 .input-theme-focus *,
 .input-theme-focus:hover *,
 .input-theme-focus:focus *,
@@ -138,7 +137,6 @@
   outline: none !important;
 }
 
-/* Placeholder Text Color */
 .bg-theme-input input::placeholder,
 .bg-theme-input .ant-input::placeholder,
 .bg-theme-input .ant-input-password input::placeholder,
@@ -161,7 +159,6 @@
   }
 }
 
-/* Tooltip Styling */
 .ant-tooltip .ant-tooltip-inner {
   background-color: #000000 !important;
   color: #ffffff !important;
@@ -182,7 +179,6 @@
   }
 }
 
-/* Dropdown Item States */
 .dropdown-theme-items .ant-select-item-option-selected,
 .dropdown-theme-items .ant-select-item-option-selected *,
 .dropdown-theme-items .ant-select-item-option:hover,
@@ -198,12 +194,10 @@
   border-radius: 8px !important;
 }
 
-/* Modal background */
 .modal-bg-primary * {
   background-color: var(--chrome-bg-primary) !important;
 }
 
-/* Border radius 8px */
 .radius-8px {
   border-radius: 8px !important;
 }
@@ -216,7 +210,6 @@
   border-radius: 8px !important;
 }
 
-/* Selected/Highlighted item background */
 .bg-selected,
 .bg-selected *,
 .hover\:bg-selected:hover,
@@ -229,7 +222,6 @@
   fill: var(--chrome-icon-color) !important;
 }
 
-/* Light mode overrides for theme utilities */
 @media (prefers-color-scheme: light) {
   .bg-theme-input {
     background-color: #ffffff !important;
@@ -240,7 +232,6 @@
   }
 }
 
-/* Dark mode overrides for theme utilities */
 @media (prefers-color-scheme: dark) {
   .bg-theme-input {
     background-color: var(--chrome-input-background) !important;
@@ -264,173 +255,52 @@
 }
 
 /* ============================================
-   STATIC COLOR UTILITIES (non-theme colors)
+   STATIC COLOR UTILITIES
    ============================================ */
 
-/* Red Colors - for errors, danger buttons, delete */
-.bg-red-500 {
-  background-color: #ef4444 !important;
-}
-
-.bg-red-600 {
-  background-color: #dc2626 !important;
-}
-
-.bg-red-danger {
-  background-color: #ff4d4f !important;
-}
-
-.bg-red-light {
-  background-color: rgba(239, 68, 68, 0.1) !important;
-}
-
-.bg-red-danger-light {
-  background-color: rgba(255, 77, 79, 0.1) !important;
-}
-
+.bg-red-500 { background-color: #ef4444 !important; }
+.bg-red-600 { background-color: #dc2626 !important; }
+.bg-red-danger { background-color: #ff4d4f !important; }
+.bg-red-light { background-color: rgba(239, 68, 68, 0.1) !important; }
+.bg-red-danger-light { background-color: rgba(255, 77, 79, 0.1) !important; }
 .hover\:bg-red-danger-light:hover,
-.hover\:bg-red-danger-light:hover * {
-  background-color: rgba(255, 77, 79, 0.15) !important;
-}
+.hover\:bg-red-danger-light:hover * { background-color: rgba(255, 77, 79, 0.15) !important; }
+.text-red-500 { color: #ef4444 !important; }
+.text-red-600 { color: #dc2626 !important; }
+.text-red-danger { color: #ff4d4f !important; }
+.fill-red-500 { fill: #ef4444 !important; }
+.fill-red-500 svg, .fill-red-500 svg * { fill: #ef4444 !important; }
+.fill-red-600 { fill: #dc2626 !important; }
+.fill-red-600 svg, .fill-red-600 svg * { fill: #dc2626 !important; }
+.fill-red-danger { fill: #ff4d4f !important; }
+.fill-red-danger svg, .fill-red-danger svg * { fill: #ff4d4f !important; }
+.bg-green-success { background-color: #52c41a !important; }
+.text-green-700 { color: #047857 !important; }
+.bg-green-100 { background-color: #d1fae5 !important; }
+.bg-blue-50 { background-color: rgba(22, 119, 255, 0.1) !important; }
+.bg-blue-light { background-color: rgba(22, 119, 255, 0.12) !important; }
+.text-blue-primary { color: #1677ff !important; }
+.bg-black { background-color: #000000 !important; }
+.bg-white { background-color: #ffffff !important; }
+.bg-gray-50 { background-color: #f5f5f5 !important; }
+.bg-gray-100 { background-color: #f5f5f5 !important; }
+.bg-gray-200 { background-color: #e0e0e0 !important; }
+.bg-gray-800 { background-color: #333333 !important; }
+.text-black { color: #000000 !important; }
+.text-white { color: #ffffff !important; }
+.text-gray-400 { color: rgba(0, 0, 0, 0.88) !important; }
+.fill-black { fill: #000000 !important; }
+.fill-black svg, .fill-black svg * { fill: #000000 !important; }
+.fill-white { fill: #ffffff !important; }
+.fill-white svg, .fill-white svg * { fill: #ffffff !important; }
+.border-black { border-color: #000000 !important; }
+.border-white { border-color: #ffffff !important; }
+.border-gray-200 { border-color: #e0e0e0 !important; }
 
-.text-red-500 {
-  color: #ef4444 !important;
-}
-
-.text-red-600 {
-  color: #dc2626 !important;
-}
-
-.text-red-danger {
-  color: #ff4d4f !important;
-}
-
-.fill-red-500 {
-  fill: #ef4444 !important;
-}
-
-.fill-red-500 svg,
-.fill-red-500 svg * {
-  fill: #ef4444 !important;
-}
-
-.fill-red-600 {
-  fill: #dc2626 !important;
-}
-
-.fill-red-600 svg,
-.fill-red-600 svg * {
-  fill: #dc2626 !important;
-}
-
-.fill-red-danger {
-  fill: #ff4d4f !important;
-}
-
-.fill-red-danger svg,
-.fill-red-danger svg * {
-  fill: #ff4d4f !important;
-}
-
-/* Green Colors - for success messages */
-.bg-green-success {
-  background-color: #52c41a !important;
-}
-
-.text-green-700 {
-  color: #047857 !important;
-}
-
-.bg-green-100 {
-  background-color: #d1fae5 !important;
-}
-
-/* Blue Colors - for links, primary actions */
-.bg-blue-50 {
-  background-color: rgba(22, 119, 255, 0.1) !important;
-}
-
-.bg-blue-light {
-  background-color: rgba(22, 119, 255, 0.12) !important;
-}
-
-.text-blue-primary {
-  color: #1677ff !important;
-}
-
-/* Black/White Colors - for buttons and contrasts */
-.bg-black {
-  background-color: #000000 !important;
-}
-
-.bg-white {
-  background-color: #ffffff !important;
-}
-
-.bg-gray-50 {
-  background-color: #f5f5f5 !important;
-}
-
-.bg-gray-100 {
-  background-color: #f5f5f5 !important;
-}
-
-.bg-gray-200 {
-  background-color: #e0e0e0 !important;
-}
-
-.bg-gray-800 {
-  background-color: #333333 !important;
-}
-
-.text-black {
-  color: #000000 !important;
-}
-
-.text-white {
-  color: #ffffff !important;
-}
-
-.text-gray-400 {
-  color: rgba(0, 0, 0, 0.88) !important;
-}
-
-.fill-black {
-  fill: #000000 !important;
-}
-
-.fill-black svg,
-.fill-black svg * {
-  fill: #000000 !important;
-}
-
-.fill-white {
-  fill: #ffffff !important;
-}
-
-.fill-white svg,
-.fill-white svg * {
-  fill: #ffffff !important;
-}
-
-.border-black {
-  border-color: #000000 !important;
-}
-
-.border-white {
-  border-color: #ffffff !important;
-}
-
-.border-gray-200 {
-  border-color: #e0e0e0 !important;
-}
-
-/* Special background utilities */
 .bg-code {
   background-color: var(--chrome-input-background) !important;
 }
 
-/* Save button - inverted colors */
 .bg-inverted,
 .bg-inverted *,
 .bg-inverted span,
@@ -469,7 +339,6 @@
   }
 }
 
-/* Toast text only - black text */
 .toast-text-black,
 .toast-text-black * {
   color: #000000 !important;
@@ -484,7 +353,6 @@
    END THEME UTILITY CLASSES
    ============================================ */
 
-/* Force background color with highest priority */
 html,
 body,
 #root {
@@ -495,7 +363,6 @@ body,
   min-height: 100vh !important;
 }
 
-/* Apply theme text color globally */
 *,
 body,
 div,
@@ -549,7 +416,6 @@ textarea {
   background-color: var(--scrollbar-thumb-hover);
 }
 
-/* Exception: Error messages should always be red */
 .ant-message-error,
 .ant-message-error .ant-message-notice-content,
 [class*="error"],
@@ -557,39 +423,191 @@ textarea {
   color: #ef4444 !important;
 }
 
-/* Override Tailwind's background utilities */
 #root > * {
   background-color: transparent !important;
 }
 
-/* Ensure no white backgrounds from Tailwind */
 .bg-white,
 .bg-gray-50,
 .bg-gray-100 {
   background-color: transparent !important;
 }
 
-/* Animation for streaming cursor */
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes message-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.message-enter {
+  animation: message-fade-in 0.25s ease-out;
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
 .streaming-cursor {
   animation: blink 1s infinite;
   color: black;
 }
 
-@keyframes blink {
-  0%,
-  50% {
-    opacity: 1;
-  }
-  51%,
-  100% {
-    opacity: 0;
-  }
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.1); }
 }
 
-/* Markdown body styles */
+.stop-pulse {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes dots {
+  0%, 20% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.typing-dot {
+  animation: dots 1.4s ease-in-out infinite;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.typing-dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+/* ============================================
+   MESSAGE BUBBLES
+   ============================================ */
+
+.user-bubble {
+  background-color: var(--user-bubble);
+  color: var(--user-bubble-text);
+  border-radius: 18px 18px 4px 18px;
+  padding: 8px 14px;
+  display: inline-block;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+.ai-bubble {
+  background-color: var(--ai-bubble);
+  color: var(--ai-bubble-text);
+  border-radius: 18px 18px 18px 4px;
+  padding: 8px 14px;
+  display: inline-block;
+  max-width: 100%;
+  word-break: break-word;
+}
+
+/* ============================================
+   MESSAGE ACTIONS (copy/regenerate)
+   ============================================ */
+
+.message-actions {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.message-actions-group:hover .message-actions {
+  opacity: 1;
+}
+
+.message-action-btn {
+  font-size: 13px;
+  cursor: pointer;
+  opacity: 0.35;
+  transition: opacity 0.15s ease;
+}
+
+.message-action-btn:hover {
+  opacity: 0.7;
+}
+
+/* ============================================
+   MODEL BADGE
+   ============================================ */
+
+.model-badge {
+  font-size: 11px;
+  opacity: 0.5;
+  padding: 1px 6px;
+  border-radius: 4px;
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  cursor: default;
+}
+
+/* ============================================
+   SUGGESTION CHIPS
+   ============================================ */
+
+.suggestion-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border: 1px solid var(--chrome-input-border);
+  background-color: var(--chrome-input-background);
+  color: var(--chrome-text-primary);
+}
+
+.suggestion-chip:hover {
+  border-color: #1677ff;
+  background-color: rgba(22, 119, 255, 0.06);
+}
+
+/* ============================================
+   USAGE FOOTER
+   ============================================ */
+
+.usage-footer {
+  border-top: 1px solid var(--chrome-input-border);
+  font-size: 11px;
+  opacity: 0.45;
+  text-align: center;
+  padding: 3px 12px;
+}
+
+/* ============================================
+   SEND BUTTON
+   ============================================ */
+
+.send-btn-enabled {
+  color: #1677ff !important;
+}
+
+.send-btn-enabled .anticon svg {
+  fill: #1677ff !important;
+}
+
+/* ============================================
+   MARKDOWN BODY
+   ============================================ */
+
 .markdown-body {
   font-size: 14px;
   color: var(--chrome-text-primary);
+  line-height: 1.6;
 }
 
 .markdown-body p {
@@ -597,73 +615,148 @@ textarea {
   white-space: pre-wrap;
 }
 
+.markdown-body p:last-child {
+  margin-bottom: 0;
+}
+
 .markdown-body ul,
 .markdown-body ol {
-  margin: 0 0 8px 16px;
+  margin: 0 0 8px 0;
+  padding-left: 20px;
+}
+
+.markdown-body li {
+  margin-bottom: 2px;
 }
 
 .markdown-body code {
-  background-color: var(--chrome-input-background);
-  padding: 2px 4px;
+  background-color: rgba(0, 0, 0, 0.06);
+  padding: 2px 6px;
   border-radius: 4px;
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
-  color: var(--chrome-text-primary);
+  font-size: 13px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown-body code {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
 .markdown-body pre {
-  background-color: var(--chrome-input-background);
-  border-radius: 6px;
+  background-color: rgba(0, 0, 0, 0.04);
+  border-radius: 8px;
   padding: 0;
   margin: 8px 0;
   overflow-x: auto;
   max-width: 100%;
 }
 
+@media (prefers-color-scheme: dark) {
+  .markdown-body pre {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
+}
+
 .markdown-body pre code {
   display: block;
-  padding: 12px;
+  padding: 12px 14px;
   background-color: transparent;
   white-space: pre;
   overflow-wrap: normal;
   word-break: normal;
 }
 
-/* Tool JSON pre formatting */
+.markdown-body table {
+  border-collapse: collapse;
+  margin: 8px 0;
+  width: 100%;
+}
+
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid var(--chrome-input-border);
+  padding: 6px 10px;
+  text-align: left;
+}
+
+.markdown-body th {
+  font-weight: 600;
+}
+
+.markdown-body blockquote {
+  border-left: 3px solid var(--chrome-input-border);
+  margin: 8px 0;
+  padding: 4px 12px;
+  opacity: 0.8;
+}
+
+.markdown-body a {
+  color: #1677ff;
+  text-decoration: none;
+}
+
+.markdown-body a:hover {
+  text-decoration: underline;
+}
+
+.markdown-body img {
+  max-width: 100%;
+  border-radius: 6px;
+  margin: 8px 0;
+}
+
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid var(--chrome-input-border);
+  margin: 12px 0;
+}
+
+/* ============================================
+   TOOL JSON
+   ============================================ */
+
 .tool-json-pre {
   margin: 0;
   font-size: 12px;
   overflow-x: auto;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  background-color: var(--chrome-input-background);
+  background-color: rgba(0, 0, 0, 0.04);
   padding: 12px;
   border-radius: 6px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tool-json-pre {
+    background-color: rgba(255, 255, 255, 0.06);
+  }
 }
 
 .tool-json-pre::-webkit-scrollbar {
   display: none;
 }
 
-/* Chat input container - outer wrapper */
+/* ============================================
+   CHAT INPUT
+   ============================================ */
+
 .chat-input-container {
   background-color: transparent !important;
 }
 
-/* Chat input box - main container (same as NTP search box) */
 .chat-input-box {
   background-color: var(--chrome-input-background) !important;
   border: 1px solid var(--chrome-input-border) !important;
-  border-radius: 8px !important;
+  border-radius: 12px !important;
 }
 
-/* Force white background in light mode */
 @media (prefers-color-scheme: light) {
   .chat-input-box {
     background-color: #ffffff !important;
   }
 }
 
-/* Chat input editor styles */
 .chat-input-rich-container {
   position: relative;
   flex: 1;
@@ -700,7 +793,10 @@ textarea {
   opacity: 0.5;
 }
 
-/* Webpage reference styles */
+/* ============================================
+   WEBPAGE REFERENCES
+   ============================================ */
+
 .webpage-reference-display {
   color: #1677ff;
   background: rgba(22, 119, 255, 0.12);
@@ -722,7 +818,10 @@ textarea {
   margin-right: 2px;
 }
 
-/* Minimal collapse styles for tools, thinking, and agents */
+/* ============================================
+   COLLAPSE OVERRIDES
+   ============================================ */
+
 .tool-call-collapse .ant-collapse-header,
 .thinking-collapse .ant-collapse-header,
 .agent-collapse .ant-collapse-header {
@@ -754,7 +853,6 @@ textarea {
   border-radius: 6px !important;
 }
 
-/* Force white background in light mode for collapse content */
 @media (prefers-color-scheme: light) {
   .tool-call-collapse .ant-collapse-content-box,
   .thinking-collapse .ant-collapse-content-box,
